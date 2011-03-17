@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{times}
+
+\begin{document}
+ 
+\title{Distributed applications in an scalable environment}
+\author{Simon Norberg - norberg.simon@gmail.com\\
+        Filip Andersson - flpandersson@gmail.com }
+\date{\today}
+\maketitle
+ 
+%\begin{abstract}
+%TODO
+%\end{abstract}
+ 
+\section{Introduction}
+Distribution and scalability is becoming an important issue in todays
+application development \cite{rellermeyer2007services}.
+The need for application to scale between few user up
+to several millions on very short notice gives developers limited time to
+modify and/or redesign the application, so having an already scalable system
+has a lot of benefits. If a system looses its ability to scale, and thereby
+cannot support more users, it may quickly loose its target audience to a
+competitor. Furthermore, being able to modify and update parts of the system
+separately, rather than everything at once, makes application maintenance
+significantly easier and downtime minimal in production systems.
+ 
+\subsection{Goals} 
+What we intend to investigate is what needs to be considered when developing a
+scalable distributed system, and to what cost these features comes at. We
+believe that while the cost of these features may initially be higher, the cost
+of maintainability is lower. We hope that the outcome of our research will be
+useful for people trying to determine whether or not to strive towards
+implementing a scalable distributed system from the start, rather than
+incrementally increasing system capacity during the system's lifetime.
+
+\newpage
+
+\section{Research questions}
+\begin{itemize}
+\item{How do one successfully develop a scalable distributed system? Which
+factors needs to be considered, and how does one achieve these? Without knowing
+what needs to be done, developing a high-grade scalable system may be
+difficult.} 
+
+\item{Which extra costs do this sort of development lead to, contrary to
+developing a system where one does not put any extra effort into making it
+scalable? If scalability comes at a high cost, it may not be a viable way for
+certain systems to e.g. support more users.} 
+
+\item{Which technologies, libraries and software can one use to achieve
+high-grade scalability? Not all technologies etc. support a high level of
+scalability, and knowing the difference between the ones who do and the ones
+who do not can save a lot of expenses.} 
+
+\item{Which kinds of systems can benefit from having high-grade scalability? It
+is important to know if a certain system actually benefits from being highly
+scalable, and if so, how much. If the benefits are relatively small, there 
+might be cheaper ways of developing it.}
+\end{itemize}
+
+\section{Research methodology}
+We will be using a Literature Review and a Post-mortem analysis to conduct our 
+research. 
+
+\subsection{Literature review design}
+We will be searching for literature for our review mainly on the Internet. The
+keywords we will be using while searching will be focused on terms related to
+distributed systems and scalability. 
+
+The relevance of the literature will be determined by reading the abstract and
+possibly the introduction. If the literature seems to match our needs, we will
+then study it further, if not it will be dismissed.
+
+\subsection{Post-mortem analysis design}
+ 
+We will not actually be collecting any data from the project, but rather
+utilize the experience of writing distributed and scalable software which we
+gained during the project as a starting point for our post-mortem analysis. We
+are using OSGi \cite{marples2001open} as a main component in our distributed
+system, and we have concurrent requests to our backend API and our database.
+Since our system is both distributed and places high demands on scalability, we
+feel that we have at least some experience in the area.
+
+
+\bibliographystyle{plain}
+\bibliography{reference}
+ 
+\end{document}  %End of document.
