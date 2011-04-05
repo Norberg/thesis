@@ -1,5 +1,4 @@
 \documentclass{article}
-\usepackage{times}
 
 \begin{document}
  
@@ -38,22 +37,23 @@ incrementally increasing system capacity during the system's lifetime.
 
 \section{Research questions}
 \begin{itemize}
-\item{How do one successfully develop a scalable distributed system? Which
+\item{RQ1: How do one successfully develop a scalable distributed system? Which
 factors needs to be considered, and how does one achieve these? Without knowing
 what needs to be done, developing a high-grade scalable system may be
 difficult.} 
 
-\item{Which extra costs do this sort of development lead to, contrary to
+\item{RQ1.1: Which technologies, libraries and software can one use to achieve
+high-grade scalability? Not all technologies etc. support a high level of
+scalability, and knowing the difference between the ones who do and the ones
+who do not can save a lot of expenses.}
+
+%FIXME 
+\item{RQ2: Which extra costs do this sort of development lead to, contrary to
 developing a system where one does not put any extra effort into making it
 scalable? If scalability comes at a high cost, it may not be a viable way for
 certain systems to e.g. support more users.} 
 
-\item{Which technologies, libraries and software can one use to achieve
-high-grade scalability? Not all technologies etc. support a high level of
-scalability, and knowing the difference between the ones who do and the ones
-who do not can save a lot of expenses.} 
-
-\item{Which kinds of systems can benefit from having high-grade scalability? It
+\item{RQ43: Which kinds of systems can benefit from having high-grade scalability? It
 is important to know if a certain system actually benefits from being highly
 scalable, and if so, how much. If the benefits are relatively small, there 
 might be cheaper ways of developing it.}
@@ -64,9 +64,21 @@ We will be using a Literature Review and a Post-mortem analysis to conduct our
 research. 
 
 \subsection{Literature review design}
-We will be searching for literature for our review mainly on the Internet. The
-keywords we will be using while searching will be focused on terms related to
-distributed systems and scalability. 
+We will be searching for literature for our review mainly on Google Scholar and
+on BTH's article database Elin. The keywords we will be using while searching 
+will be focused on terms related to distributed systems and scalability.
+\newline
+List of keywords:
+\begin{itemize}
+\item{scalable systems}
+\item{python parallel}
+\item{mpi}
+\item{Distributed systems AND scalable design}
+\item{Distributed environments services osgi}
+\item{Scalable distribution AND software}
+\item{Scalable development AND cost}
+\item{Scalability AND distributed systems}
+\end{itemize}
 
 The relevance of the literature will be determined by reading the abstract and
 possibly the introduction. If the literature seems to match our needs, we will
@@ -81,7 +93,6 @@ are using OSGi \cite{marples2001open} as a main component in our distributed
 system, and we have concurrent requests to our backend API and our database.
 Since our system is both distributed and places high demands on scalability, we
 feel that we have at least some experience in the area.
-
 
 \bibliographystyle{plain}
 \bibliography{reference}
