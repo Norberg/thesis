@@ -15,7 +15,7 @@
 \section{Introduction}
 Distribution and scalability is becoming an important issue in todays
 application development \cite{rellermeyer2007services}.
-The need for application to scale between a few users up to several millions 
+The need for an application to scale between a few users up to several millions 
 on very short notice gives developers limited time to modify and/or redesign 
 the application, so having an already scalable system has a lot of benefits. 
 If a system looses its ability to scale, and thereby cannot support more users, 
@@ -27,15 +27,31 @@ in production systems.
 \subsection{Background}
 Distributed Computing, perhaps more known as Cloud Computing, is becoming a
 more and more common approach to software development. The basic concept of 
-distributed computing 
+distributed computing is to make different services available in the so called
+'cloud', which means that these services are reachable from anywhere one 
+has internet access. These services can, for example, be things like e-mail,
+document editing, social networks and much more. The fact that these services
+are so widely distributed places high demands on the number of users that can
+be supported.  These demands can be accommodated by simply making sure the
+systems have a large amount of resources from the start, or adding resources
+from time to time. However, if there's
+less users on the system than it has capacity for, this approach quickly
+becomes expensive due to a lot of unused resources. This problem can be solved
+by making the system scalable, i.e. that it uses resources in proportion to the
+number of current users. If the user base drops, it will use less resources,
+and when more people are using the system it will use more. By making a system
+scalable, one makes it able to adapt to changing conditions and environments, 
+which is important since a system is generally developed to run over a 
+relatively large period of time, during which a lot of things may rapidly 
+change \cite{van1998software} \cite{caruso1997toward}.
  
 \subsection{Goals} 
-What we intend to investigate is what needs to be considered when developing a
-scalable distributed system, and to what cost these features comes at. We
-believe that while the cost of these features may initially be higher, the cost
-of maintainability is lower. We hope that the outcome of our research will be
-useful for people trying to determine whether or not to strive towards
-implementing a scalable distributed system from the start, rather than
+What we intend to investigate is what needs to be considered
+when developing a scalable distributed system, and to what cost these features
+comes at. We believe that while the cost of these features may initially be
+higher, the cost of maintainability is lower. We hope that the outcome of our
+research will be useful for people trying to determine whether or not to strive
+towards implementing a scalable distributed system from the start, rather than
 incrementally increasing system capacity during the system's lifetime.
 
 \newpage
