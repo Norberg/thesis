@@ -87,7 +87,16 @@ research.
 We will be searching for literature for our review mainly on Google Scholar and
 on BTH's article database Elin. The keywords we will be using while searching 
 will be focused on terms related to distributed systems and scalability.
+
+The research started with the keywords scalable and distributed systems,
+from there we read article that looked promising first by just looking on
+the topic and if it looked relevant for our thesis, we took a closer look
+at the abstract. After reading the abstract we made a decision if the paper
+was in the scope of our project and if it was that we selected it. And used
+terminology found in that paper to find further papers on which the same 
+process was used. 
 \newline
+
 List of keywords:
 \begin{itemize}
 \item{scalable systems}
@@ -100,12 +109,15 @@ List of keywords:
 \item{Scalability AND distributed systems}
 \end{itemize}
 
+%fixme: still needed?
 The relevance of the literature will be determined by reading the abstract and
 possibly the introduction. If the literature seems to match our needs, we will
 then study it further, if not it will be dismissed.
 
 \subsection{Post-mortem analysis design}
- 
+
+%fixme clerify 
+\subsubsection{Project}
 We will not actually be collecting any data from the project, but rather
 utilize the experience of writing distributed and scalable software which we
 gained during the project as a starting point for our post-mortem analysis. We
@@ -114,8 +126,25 @@ system, and we have concurrent requests to our backend API and our database.
 Since our system is both distributed and places high demands on scalability, we
 feel that we have at least some experience in the area.
 
+\subsubsection{MPI}
+We will also study how a more classical and well tested approach to writing
+scalable distributed systems with MPI \cite{gropp1996high}. MPI have easy
+to use python bindings \cite{miller2002pympi} \cite{millerparallel} we will be
+using to write test programs that test the capabilities of MPI and compare the
+performance and cost to develop.
+We will be measuring:
+\begin{itemize}
+\item Time to develop
+\item Lines of code
+\item How easy the code is to understand
+\item How easy it is to extend the program
+\item Performance - How fast do the application run
+\item Scalability - how well do it scale when adding more resources
+\item Performance when using only one node, eg. overhead for MPI
+\end{itemize}
+ 
+
+
 \bibliographystyle{unsrt}
 \bibliography{reference}
-
- 
-\end{document}  %End of document.
+\end{document}
