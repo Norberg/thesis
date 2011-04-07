@@ -63,11 +63,15 @@ system is generally developed to run over a relatively large period of time,
 during which a lot of things may rapidly change \cite{van1998software}
 \cite{caruso1997toward}.
 
-To promote scalability in a distributed setting one can use, for example, a
+To promote scalability in a distributed setting one can use, for example,
 \emph{Message Passing Interface (MPI)} which enables message passing between
-parallel programs running on computer clusters \cite{gropp1996high}. By using
-this, the system can enable additional resources when needed by sending
-inter-process messages.
+parallel programs running on computer clusters. MPI is
+an well tested and de facto standard for writing scalable software in any
+language and on any platform. MPI makes it easy to delegate work in an
+scalable and distributed environment and at the same time collect the results
+form different nodes. MPI also allows an arbitrary number of nodes in the 
+system with make it easy to add more resource when performance needs to
+be improved. \cite{gropp1996high}
  
 \subsection{Goals} 
 
@@ -101,6 +105,7 @@ who do not can save a lot of expenses.}
 It is important to know if a certain system actually benefits from being highly
 scalable, and if so, how much. If the benefits are relatively small, there 
 might be cheaper ways of developing it.}
+
 
 \end{itemize}
 
