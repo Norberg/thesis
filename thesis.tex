@@ -35,7 +35,7 @@ how well it can exploit functional modularity, structural regularity and
 hierarchy \cite{lipson2007principles}.
 
 To make a system modular it can be implemented using \emph{OSGi} and
-\emph{R-OSGi} \cite{rellermeyer2007services}. By using these frameworks one can
+\emph{R-OSGi} \cite{rellermeyer2007services} \cite{marples2001open}. By using these frameworks one can
 update and add components to ones system at will, and manage different
 components without having to bring down the entire system. When deployed,
 R-OSGi can be used to turn the application into a distributed application by
@@ -86,7 +86,7 @@ incrementally increasing system capacity during the system's lifetime.
 \item{RQ1: How do one successfully develop a scalable distributed system? Which
 factors needs to be considered, and how does one achieve these? Without knowing
 what needs to be done, developing a high-grade scalable system may be
-difficult, and cost alot of extra time.} 
+difficult, and cost a lot of extra time.} 
 
 \item{RQ1.1: Which technologies, libraries and software can one use to achieve
 high-grade scalability? Not all technologies etc. support a high level of
@@ -142,7 +142,7 @@ then study it further, if not it will be dismissed.
 
 \subsection{Post-mortem analysis design}
 
-%fixme clerify 
+%fixme clarify 
 \subsubsection{Project}
 We will not actually be collecting any data from the project, but rather
 utilize the experience of writing distributed and scalable software which we
@@ -166,10 +166,158 @@ We will be measuring:
 \item How easy it is to extend the program
 \item Performance - How fast do the application run
 \item Scalability - how well do it scale when adding more resources
-\item Performance when using only one node, eg. overhead for MPI
+\item Performance when using only one node, e.g. overhead for MPI
 \end{itemize}
  
+\section{Literature study results}
 
+\subsection{Initial search results}
+%TODO: Add all papers found, ish
+
+\subsection{Selected papers}
+%fixme: Remove non-relevant papers
+%fixme: Formatting. Looks. like. shit.
+\paragraph{Services everywhere: Osgi in distributed environments}
+\cite{rellermeyer2007services}
+
+\emph{Distribution is increasingly becoming an important issue in both
+enterprise applications and mobile computing. OSGi it- self has only rudimental
+support for distribution, in forms of interfaces for interaction with Jini (R3)
+or UPnP (R3 + R4) infrastructures. When it comes to interconnecting different
+OSGi frameworks, there are only few solutions so far. In this paper, we present
+these existing solutions and compare the different approaches with our own
+R-OSGi. The goal of our open source project is to provide a seamless and non-
+invasive middleware for accessing remote services in OSGi frameworks. We
+explain the basic design principles of R- OSGi, such as transparent service
+access and spontaneous interaction, and briefly mention the internal structure
+and techniques used in R-OSGi, such as service discovery and smart proxies.}
+
+\paragraph{Evaluating the scalability of distributed systems}
+\cite{jogalekar2000evaluating}
+
+\emph{A system design is scalable if it can be economically deployed at a range
+of scales, in both small and large con- figurations. Little attention has been
+paid to measuring and comparing the scalability of different designs of
+software for distributed operation. Recently a new measure of scal- ability
+(called here P-scalability since it based on the “power” metric) has been
+defined specifically for distrib- uted systems. This paper generalizes the
+metric, defines a scaling path embodying a strategy modifying the system as it
+is scaled up, and employs scalability enabling parameters which adapt the
+system to give the maximum value of the scalability metric, at any point along
+the scaling path.}
+
+\paragraph{Principles of modularity, regularity and hierarchy for scalable
+systems} \cite{lipson2007principles}
+
+\emph{Scalability of open-ended evolutionary processes depends on their ability
+to exploit functional modularity, structural regularity and hierarchy.  This
+paper offers a number of observations about properties, dependencies and
+tradeoffs among these principles and proposes a formal model where such ele-
+ments can be examined.}
+
+\paragraph{R-OSGi: Distributed applications through software modularization}
+\cite{rellermeyer2007r}
+
+\emph{In this paper we take advantage of the concepts developed for centralized
+module management, such as dynamic loading and unloading of modules, and show
+how they can be used to support the development and operation of distributed
+applications. We do so through R-OSGi, a distributed middleware platform that
+extends the centralized, industry- standard OSGi specification to support
+distributed module management.  To the developer, R-OSGi looks like a
+conventional module management tool. However, at deployment time, R-OSGi can be
+used to turn the application into a distributed application by simply
+indicating where the different modules should be deployed. At run time, R-OSGi
+represents distributed failures as module insertion and withdrawal operations
+so that the logic to deal with failures is the same as that employed to deal
+with dependencies among software modules. In doing so, R-OSGi greatly
+simplifies the development of distributed applications with no performance
+cost. In the paper we describe R-OSGi and several use cases.  We also show with
+extensive experiments that R-OSGi has a performance comparable or better than
+that of RMI or UPnP, both commonly used distribution mechanisms with far less
+functionality than R-OSGi.}
+
+\paragraph{Software engineering for the scalable distributed applications}
+\cite{van1998software}
+
+\emph{A major problem in the development of distributed applications is that
+one cannot assume that the environment in which the application is to operate
+will remain the same. This means that developers must take into account that
+the application should be easy to adapt, A requirement that is often formulated
+imprecisely is that an application should be scalable. The authors concentrate
+on scalability as a requirement for distributed applications, what it actually
+means, and how it can be taken into account during system design and
+implementation. They present a framework in which scalability requirements can
+be formulated precisely. In addition, they present an approach by which
+scalability can be taken into account during application development. Their
+approach consists of an engineering method for distributing functionality,
+combined with an object-based implementation framework for applying scaling
+techniques such as replication and caching.}
+
+\paragraph{Toward a scalable design for command and control systems}
+\cite{caruso1997toward}
+
+\emph{ Command and control systems exist in a world of con- stantly shifing
+demands and expectations: therefore, pro- ducing scalable, evolvable systems
+has always been a priority of system designers. Howevel; the need to meet
+peiformance requirements has ofen been a restraint on scalability goals.
+Advances in the speed and capacity of computational and communications
+equipment have sub- stantially increased the range of scalability that can be
+achieved while still meeting performunce requirements.  The High Performance
+Distributed Computing Program (HiPer-D) has demonstrated a design for the AEGIS
+weapons system, which is close to achieving the full range of operational
+requirements while providing scalability along several dimensions. This paper
+discusses the HiPer-D design, its context, development, and efforts to achieve
+system level p e i f o m n c e .}
+
+\paragraph{A high-performance, portable implementation of the MPI message passing
+interface standard} \cite{gropp1996high}
+
+\emph{MPI (Message Passing Interface) is a specification for a standard library
+for message passing that was defined by the MPI Forum, a broadly based group of
+parallel computer vendors, library writers, and applications specialists.
+Multiple implementations of MPI have been developed. In this paper, we describe
+MPICH, unique among existing implementations in its design goal of combining
+portability with high performance. We document its portability and performance
+and describe the architecture by which these features are simultaneously
+achieved. We also discuss the set of tools that accompany the free distribution
+of MPICH, which constitute the beginnings of a portable parallel programming
+environment. A project of this scope inevitably imparts lessons about parallel
+computing, the specification being followed, the current hardware and software
+environment for parallel computing, and project management; we describe those
+we have learned.  Finally, we discuss future developments for MPICH, including
+those necessary to accommodate extensions to the MPI Standard now being
+contemplated by the MPI Forum.}
+
+\paragraph{pyMPI - An introduction to parallel Python using MPI}
+\cite{miller2002pympi}
+
+\emph{The interpreted language, Python, provides a good framework for building
+scripts and control frameworks. While Python has a (co-routining) thread model,
+its basic design is not particularly appropriate for parallel programming. The
+pyMPI extension set is designed to provide parallel operations for Python on
+distributed, parallel machines using MPI.}
+
+\paragraph{Parallel, distributed scripting with python} \cite{millerparallel}
+
+\emph{Parallel computers used to be, for the most part, one-of-a-kind systems
+which were extremely difficultto program portably. With SMP architectures, the
+advent of the POSIX thread API and OpenMP gavedevelopers ways to portably
+exploit on-the-box shared memory parallelism. Since these architectures
+didn’tscale cost-effectively, distributed memory clusters were developed. The
+associated MPI message passinglibraries gave these systems a portable paradigm
+too. Having programmers effectively use this paradigm isa somewhat different
+question. Distributed data has to be explicitly transported via the messaging
+systemin order for it to be useful. In high level languages, the MPI library
+gives access to data distribution routines in C, C++, and FORTRAN. But we need
+more than that. Many reasonable and common tasks are best done in (or as
+extensions to) scripting languages. Consider sysadm tools such as password
+crackers, file purgers, etc ...These are simple to write in a scripting
+language such as Python (an open source, portable, and freelyavailable
+interpreter). But these tasks beg to be done in parallel. Consider the a
+password checker thatchecks an encrypted password against a 25,000 word
+dictionary. This can take around 10 seconds in Python(6 seconds in C). It is
+trivial to parallelize if you can distribute the information and co-ordinate
+the work.}
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
