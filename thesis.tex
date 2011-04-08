@@ -64,14 +64,14 @@ during which a lot of things may rapidly change \cite{van1998software}
 \cite{caruso1997toward}. This can be crucial to, among other things, reduce
 software development cost \cite{fayad2005towards}.
 
-To promote scalability in a distributed setting one can use, for example,
+To promote scalability in a distributed setting one can use, for example, the
 \emph{Message Passing Interface (MPI)} which enables message passing between
 parallel programs running on computer clusters. MPI is
 an well tested and de facto standard for writing scalable software in any
 language and on any platform. MPI makes it easy to delegate work in an
 scalable and distributed environment and at the same time collect the results
 form different nodes. MPI also allows an arbitrary number of nodes in the 
-system with make it easy to add more resource when performance needs to
+system with make it easy to add more resources when performance needs to
 be improved. \cite{gropp1996high}
  
 \subsection{Goals} 
@@ -87,6 +87,7 @@ incrementally increasing system capacity during the system's lifetime.
 \newpage
 
 \section{Research questions}
+
 \begin{itemize}
 \item{RQ1: How do one successfully develop a scalable distributed system? Which
 factors needs to be considered, and how does one achieve these? Without knowing
@@ -111,10 +112,12 @@ might be cheaper ways of developing it.}
 \end{itemize}
 
 \section{Research methodology}
+
 We will be using a Literature Review and a Post-mortem analysis to conduct our 
 research. 
 
 \subsection{Literature review design}
+
 We will be searching for literature for our review mainly on Google Scholar and
 on BTH's article database Elin. The keywords we will be using while searching 
 will be focused on terms related to distributed systems and scalability.
@@ -130,33 +133,26 @@ process was used.
 
 List of keywords:
 \begin{itemize}
-\item{scalable systems}
-\item{python parallel}
-\item{mpi}
-\item{Distributed systems AND scalable design}
-\item{Distributed environments services osgi}
-\item{Scalable distribution AND software}
-\item{Scalable development AND cost}
-\item{Scalability AND distributed systems}
-\item{Distributed Applications AND Software Modularization}
+\item{scalable systems (Google Scholar)}
+\item{python parallel (Google Scholar)}
+\item{mpi (Google Scholar)}
+\item{Distributed systems AND scalable design (ELIN)}
+\item{Distributed environments services osgi (ELIN)}
+\item{Scalable distribution AND software (ELIN)}
+\item{Scalable development AND cost (ELIN)}
+\item{Scalability AND distributed systems (ELIN)}
+\item{Distributed Applications AND Software Modularization (ELIN)}
 \end{itemize}
-
-%fixme: still needed?
-The relevance of the literature will be determined by reading the abstract and
-possibly the introduction. If the literature seems to match our needs, we will
-then study it further, if not it will be dismissed.
 
 \subsection{Post-mortem analysis design}
 
-%fixme clarify 
 \subsubsection{Project}
-We will not actually be collecting any data from the project, but rather
-utilize the experience of writing distributed and scalable software which we
-gained during the project as a starting point for our post-mortem analysis. We
-are using OSGi \cite{marples2001open} as a main component in our distributed
-system, and we have concurrent requests to our backend API and our database.
-Since our system is both distributed and places high demands on scalability, we
-feel that we have at least some experience in the area.
+We will be collecting data from our experience of writing distributed and
+scalable software which we gained during the project. We are using OSGi
+\cite{marples2001open} as a main component in our distributed system, and we
+have concurrent requests to our backend API and our database. Since our system
+is both distributed and places high demands on scalability, we feel that we
+have at least some experience in the area.
 
 \subsubsection{MPI}
 We will also study how a more classical and well tested approach to writing
@@ -189,12 +185,12 @@ when you starts to get used to mpi.}
 \begin{itemize}
 \item{ \textbf{Why} - Code that is easy to understand is also easy to maintain and extend. }
 \item{ \textbf{How} - Hard to objectively measure, but we will compare how much harder/easier we 
- fell it is to understand the mpi code. }
+ feel it is to understand the mpi code. }
 \end{itemize}
 \item How easy it is to extend the program
 \begin{itemize}
 \item{ \textbf{Why} - If the application becomes harder to extend and improve upon 
-when using mpi it maybe isn't feasible to write applications thats
+when using mpi it maybe isn't feasible to write applications that
 needs to be extended further on with mpi.}
 \item{ \textbf{How} - Measure how much work it takes to extend the application with 
 		some example feature}
