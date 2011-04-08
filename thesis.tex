@@ -61,7 +61,8 @@ system it will use more. By making a system scalable, one makes it able to
 adapt to changing conditions and environments, which is important since a
 system is generally developed to run over a relatively large period of time,
 during which a lot of things may rapidly change \cite{van1998software}
-\cite{caruso1997toward}.
+\cite{caruso1997toward}. This can be crucial to, among other things, reduce
+software development cost \cite{fayad2005towards}.
 
 To promote scalability in a distributed setting one can use, for example,
 \emph{Message Passing Interface (MPI)} which enables message passing between
@@ -188,7 +189,7 @@ when you starts to get used to mpi.}
 \begin{itemize}
 \item \bf{Why - Code that is easy to understand is also easy to maintain and extend. }
 \item \bf{How - Hard to objectively measure, but we will compare how much harder/easier we 
- fell it is to understand the mpi code. }
+ fell it is to understand the mpi code.}
 \end{itemize}
 \item How easy it is to extend the program
 \begin{itemize}
@@ -237,6 +238,11 @@ following articles:
 \subsection{Selected papers}
 %fixme: Remove non-relevant papers, if any
 %fixme: Formatting. Looks. like. shit. A little better now
+
+We were lucky enough to find papers that we felt were relevant from all of our
+search strings, and thus all papers that were found during the search were
+selected.
+
 \paragraph{Services everywhere: Osgi in distributed environments}
 \cite{rellermeyer2007services}
 
@@ -327,7 +333,20 @@ Distributed Computing Program (HiPer-D) has demonstrated a design for the AEGIS
 weapons system, which is close to achieving the full range of operational
 requirements while providing scalability along several dimensions. This paper
 discusses the HiPer-D design, its context, development, and efforts to achieve
-system level p e i f o m n c e .}
+system level performance.}
+
+\paragraph{Towards Scalable and Adaptable Software Architectures} \cite{fayad2005towards}
+
+\emph{Developing scalable and adaptable architectures that can accommodate
+evolving changes is crucial for reducing software development cost. To achieve
+scalability and adaptability, developers should be able to identify where and
+how new (current) layers will be added (removed) from the architecture.
+Failing to do so may lead to software architectures that require a considerable
+modifications when the system evolves or changes due to new or added
+requirements. In this paper, we address the problem of developing scalable
+software architectures that can accommodate new and/or modified requirements
+without the need for re-developing the architecture from scratch. The approach
+is demonstrated through a case study.}
 
 \paragraph{A high-performance, portable implementation of the MPI message passing
 interface standard} \cite{gropp1996high}
@@ -371,26 +390,13 @@ systemin order for it to be useful. In high level languages, the MPI library
 gives access to data distribution routines in C, C++, and FORTRAN. But we need
 more than that. Many reasonable and common tasks are best done in (or as
 extensions to) scripting languages. Consider sysadm tools such as password
-crackers, file purgers, etc ...These are simple to write in a scripting
+crackers, file purgers, etc... These are simple to write in a scripting
 language such as Python (an open source, portable, and freelyavailable
 interpreter). But these tasks beg to be done in parallel. Consider the a
-password checker thatchecks an encrypted password against a 25,000 word
+password checker that checks an encrypted password against a 25,000 word
 dictionary. This can take around 10 seconds in Python(6 seconds in C). It is
 trivial to parallelize if you can distribute the information and co-ordinate
 the work.}
-
-\paragraph{Towards Scalable and Adaptable Software Architectures} \cite{fayad2005towards}
-
-\emph{Developing scalable and adaptable architectures that can accommodate
-evolving changes is crucial for reducing software development cost. To achieve
-scalability and adaptability, developers should be able to identify where and
-how new (current) layers will be added (removed) from the architecture.
-Failing to do so may lead to software architectures that require a considerable
-modifications when the system evolves or changes due to new or added
-requirements. In this paper, we address the problem of developing scalable
-software architectures that can accommodate new and/or modified requirements
-without the need for re-developing the architecture from scratch. The approach
-is demonstrated through a case study.}
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
