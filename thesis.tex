@@ -168,59 +168,59 @@ We will be measuring:
 \begin{itemize}
 \item Time to develop
 \begin{itemize}
-\item \bf{Why - If we know how much time it takes to develop a scalable application with
+\item{ \textbf{Why} - If we know how much time it takes to develop a scalable application with
 mpi we can measure the cost of developing the scalable application. Which is needed to
 know in which cases it may be cost efficient.}
-\item \bf{How - By keeping track of spent time for writing the software, 
+\item{ \textbf{How} - By keeping track of spent time for writing the software, 
 and also by doing it more than one time we can see how much time is saved
 when you starts to get used to mpi.}
 \end{itemize}
 \item Lines of code
 \begin{itemize}
-\item \bf{Why - The easiest metric of how complex and hard to write and
+\item{ \textbf{Why} - The easiest metric of how complex and hard to write and
  maintain a program is. The metric is a bit problematic if you compare
  code written by different programmers, some write short and hard to read
  code and other more verbose but easier to read. But by letting the same
  programmers write both of the applications we hope to overcome that 
  difference.}
-\item \bf{How - Count number of lines with \emph{wc -l}}
+\item{ \textbf{How} - Count number of lines with \emph{wc -l}}
 \end{itemize}
 \item How easy the code is to understand
 \begin{itemize}
-\item \bf{Why - Code that is easy to understand is also easy to maintain and extend. }
-\item \bf{How - Hard to objectively measure, but we will compare how much harder/easier we 
- fell it is to understand the mpi code.}
+\item{ \textbf{Why} - Code that is easy to understand is also easy to maintain and extend. }
+\item{ \textbf{How} - Hard to objectively measure, but we will compare how much harder/easier we 
+ fell it is to understand the mpi code. }
 \end{itemize}
 \item How easy it is to extend the program
 \begin{itemize}
-\item \bf{Why - If the application becomes harder to extend and improve upon 
+\item{ \textbf{Why} - If the application becomes harder to extend and improve upon 
 when using mpi it maybe isn't feasible to write applications thats
 needs to be extended further on with mpi.}
-\item \bf{How - Measure how much work it takes to extend the application with 
+\item{ \textbf{How} - Measure how much work it takes to extend the application with 
 		some example feature}
 \end{itemize}
 \item Performance - How fast do the application run
 \begin{itemize}
-\item \bf{Why - Because one of the main reason for scalability is to increase the
+\item{ \textbf{Why} - Because one of the main reason for scalability is to increase the
  performance we want to know how much we are able to increase it by using mpi. }
-\item \bf{How - Measure the time to run the program with \emph{time}}
+\item{ \textbf{How} - Measure the time to run the program with \emph{time}}
 \end{itemize}
 \item Scalability - how well do it scale when adding more resources
 \begin{itemize}
-\item \bf{Why - Optimal we would like to have an application that scales linear
+\item{ \textbf{Why} - Optimal we would like to have an application that scales linear
  so when doubling the resources the performance also doubles. This is probably 
  not the case, but we want to know how much performance gain we get by adding
  more resources to the system. }
-\item \bf{How - Adding more resource to the system and then measure performance
+\item{ \textbf{How} - Adding more resource to the system and then measure performance
  again}
 \end{itemize}
 \item Performance when using only one node, e.g. overhead for MPI
 \begin{itemize}
-\item \bf{Why - We want to know how much performance penalty we get for using
+\item{ \textbf{Why} - We want to know how much performance penalty we get for using
 mpi in a system that do not need the scalability of mpi, either because it is 
 less usage at the time (e.g. due to it being night) or because the system
 don't have a high usage yet and maybe never will.}
-\item \bf{How - Setting up mpi with just one node and measure the performance
+\item{ \textbf{How} - Setting up mpi with just one node and measure the performance
  compared to the non scalable application. }
 \end{itemize}
 \end{itemize}
