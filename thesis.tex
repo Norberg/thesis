@@ -159,7 +159,7 @@ Since our system is both distributed and places high demands on scalability, we
 feel that we have at least some experience in the area.
 
 \subsubsection{MPI}
-We will also study how a more classical and well tested approach to writing
+We will also study a more classical and well tested approach to writing
 scalable distributed systems with MPI \cite{gropp1996high}. MPI have easy
 to use python bindings \cite{miller2002pympi} \cite{millerparallel} we will be
 using to write test programs that test the capabilities of MPI and compare the
@@ -169,11 +169,11 @@ We will be measuring:
 \item Time to develop
 \begin{itemize}
 \item{ \textbf{Why} - If we know how much time it takes to develop a scalable application with
-mpi we can measure the cost of developing the scalable application. Which is needed to
+MPI we can measure the cost of developing the scalable application. Which is needed to
 know in which cases it may be cost efficient.}
 \item{ \textbf{How} - By keeping track of spent time for writing the software, 
 and also by doing it more than one time we can see how much time is saved
-when you starts to get used to mpi.}
+when you starts to get used to MPI.}
 \end{itemize}
 \item Lines of code
 \begin{itemize}
@@ -189,20 +189,20 @@ when you starts to get used to mpi.}
 \begin{itemize}
 \item{ \textbf{Why} - Code that is easy to understand is also easy to maintain and extend. }
 \item{ \textbf{How} - Hard to objectively measure, but we will compare how much harder/easier we 
- fell it is to understand the mpi code. }
+ feel it is to understand the MPI code. }
 \end{itemize}
 \item How easy it is to extend the program
 \begin{itemize}
 \item{ \textbf{Why} - If the application becomes harder to extend and improve upon 
-when using mpi it maybe isn't feasible to write applications thats
-needs to be extended further on with mpi.}
+when using MPI it maybe isn't feasible to write applications that
+needs to be extended further on with MPI.}
 \item{ \textbf{How} - Measure how much work it takes to extend the application with 
 		some example feature}
 \end{itemize}
 \item Performance - How fast do the application run
 \begin{itemize}
 \item{ \textbf{Why} - Because one of the main reason for scalability is to increase the
- performance we want to know how much we are able to increase it by using mpi. }
+ performance we want to know how much we are able to increase it by using MPI. }
 \item{ \textbf{How} - Measure the time to run the program with \emph{time}}
 \end{itemize}
 \item Scalability - how well do it scale when adding more resources
@@ -217,10 +217,10 @@ needs to be extended further on with mpi.}
 \item Performance when using only one node, e.g. overhead for MPI
 \begin{itemize}
 \item{ \textbf{Why} - We want to know how much performance penalty we get for using
-mpi in a system that do not need the scalability of mpi, either because it is 
+MPI in a system that do not need the scalability of MPI, either because it is 
 less usage at the time (e.g. due to it being night) or because the system
 don't have a high usage yet and maybe never will.}
-\item{ \textbf{How} - Setting up mpi with just one node and measure the performance
+\item{ \textbf{How} - Setting up MPI with just one node and measure the performance
  compared to the non scalable application. }
 \end{itemize}
 \end{itemize}
