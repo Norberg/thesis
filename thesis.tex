@@ -1,4 +1,8 @@
 \documentclass{article}
+\usepackage{tabularx}
+\usepackage{ctable}
+\usepackage[table]{xcolor}
+\usepackage{color}
 
 \begin{document}
  
@@ -277,6 +281,17 @@ paper offers a number of observations about properties, dependencies and
 tradeoffs among these principles and proposes a formal model where such ele-
 ments can be examined.}
 
+\paragraph{The Open Services Gateway Initiative: an introductory overview} \cite{marples2001open}
+
+\emph{The Open Services Gateway Initiative is a consortium of more than 80
+companies from around the world working together to create an infrastructure to
+enable the deployment of services over wide area networks to local networks and
+devices. In this article we outline the benefits of OSGi, typical markets, and
+example use cases. The article goes on to discuss the architecture of the
+system and the capabilities that are afforded by the latest release. The
+article concludes with a brief glimpse into the future specifications that are
+expected to result from OSGi.}
+
 \paragraph{R-OSGi: Distributed applications through software modularization}
 \cite{rellermeyer2007r}
 
@@ -393,6 +408,28 @@ password checker that checks an encrypted password against a 25,000 word
 dictionary. This can take around 10 seconds in Python(6 seconds in C). It is
 trivial to parallelize if you can distribute the information and co-ordinate
 the work.}
+
+\subsection{Mapping between articles and Research Questions}
+\rowcolors{1}{gray!40}{}
+\begin{tabular}{p{8cm} c c r}
+  \rowcolor[gray]{0.5}
+  {\bf Paper} & {\bf Research Questions} \\
+  Services everywhere: Osgi in distributed environments & RQ1.1 \\
+  Evaluating in scalability of distributed systems & RQ3 \\
+  Principles of modularity, regularity and hierarchy for scalable systems & RQ1, RQ3 \\
+  R-OSGi: Distributed applications through software modularization & RQ1, RQ1.1 \\
+  Software engineering for scalable distributed applications & RQ1, RQ2 \\
+  Towards a scalable design for command and control systems & RQ1, RQ3 \\
+  Towards Scalable and Adaptable Software Architectures & RQ1, RQ2 \\
+  A high-performance, portable implementation of the MPI message passing interface standard & RQ1, RQ1.1, PM-MPI \\
+  pyMPI - An introduction to parallel Python using MPI & RQ1, RQ1.1, PM-MPI \\
+  Parallel, distributed scripting with python & RQ1, RQ1.1, PM-MPI \\
+\rowcolor[gray]{0.5}
+\end{tabular}
+\rowcolors{1}{gray!0}{}
+\\\small \emph{RQ{n} = which research question the paper answers,
+ PM-MPI = papers related to Post Mortem }
+
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
