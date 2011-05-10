@@ -3,6 +3,9 @@
 \usepackage{ctable}
 \usepackage[table]{xcolor}
 \usepackage{color}
+\usepackage{url}
+%\usepackage{graphicx}
+
 
 \begin{document}
  
@@ -226,6 +229,107 @@ don't have a high usage yet and maybe never will.}
 \end{itemize}
 
 
+\section{Post mortem results}
+\subsection{Pre study}
+We started by look at the different MPI bindings provided for python, the result
+was overwhelming and we found several different bindings providing the same
+functionality. After some research we chose to use boost-mpi python bindings
+\cite{boost-mpi}. This bindings locked well maintained and had a proper
+debian package and had example code that worked out of the box, as opposed to
+the other bindings we tested. The problem was probably that it existed more
+than one library with the exact same name but was used differently and it was
+hard to know what library different examples was supposed to work with. 
+
+\subsection{Problem}
+Before we could write a scalable application we had to choose what problem we
+wanted to solve with our application; we chose to write an application that
+would try to find what password a user had from the hash it generated.
+The reason is that it requires a lot of cpu time to calculate and it is 
+very easy to split up in several parts and doing them parallel.
+
+\subsection{Solution}
+The solutions works by iterating over a dictionary off $\sim$3.6 Million words
+and test if the word matches the supplied hash and also check if word followed
+by a digit match. The reason that we also check the word followed by a digit
+is to increase the load on the system due to the execution time being to 
+low to reliable measure and reproduce the data when only hashing $\sim$3.6
+Million words.
+
+\subsection{Set up}
+2 Computers with:
+\begin{itemize}
+\item Intel(R) Core 2 Duo CPU6600  @ 2.40GHz
+\item 2 GB Memory
+\item Local 1 Gbit lan
+\item Debian Squezze
+\item mpich 1.2.7-9.1
+\item boost-mpi-python 1.42.0
+\item Our test application \cite{pympi-test}
+\end{itemize}
+
+\subsection{Measuring}
+Measuring was done by running the application 10 times for every number of
+instances between 1 and 10 and then calculating the mean time for each 
+number of instances. A non parallel program was also written and used to
+compare to our parallel application.
+
+\subsection{Scalability}
+This table and diagram shows how much performance is increased for every
+new instance of MPI stared.
+\rowcolors{1}{gray!40}{}
+\begin{tabular}{c c c}
+  \rowcolor[gray]{0.5}
+  {\bf Instances} & {\bf python MPI (sec)} & {\bf Linear Scalability (sec)} \\
+  1 & 101,48 & 101,48 \\
+  2 & 53,66  & 50,74  \\
+  3 & 36,03  & 33,83  \\
+  4 & 28,37  & 25,37  \\
+  5 & 34,24  & 25,37  \\
+  6 & 29,32  & 25,37  \\
+  7 & 31,57  & 25,37  \\
+  8 & 29,67  & 25,37  \\
+  9 & 31,73  & 25,37  \\
+ 10 & 29,94  & 25,37  \\
+\rowcolor[gray]{0.5}
+\end{tabular}
+\rowcolors{1}{gray!0}{}
+
+\includegraphics[width=\textwidth]{img/scalabilty-pympi.png}
+\\\small Total number of cores in the system was 4, so performance stopped
+increasing when adding more instances than 4. }
+
+We can see that the performance almost increase linear when adding more
+resource to the system. This shows that our application don't have any
+major bottlenecks and it would be easy to increase the performance
+of the application by just adding more resource when its needed.
+
+\subsection{Scalable vs. Non Scalable Systems}
+This table and diagrams compare our scalable application towards an non
+scalable application
+
+\rowcolors{1}{gray!40}{}
+\begin{tabular}{c c c}
+  \rowcolor[gray]{0.5}
+  {\bf Instances} & {\bf python MPI (sec)} & {\bf Non Scalable System (sec)} \\
+  1 & 101,48 & 96.82 \\
+  2 & 53,66  & 96.82  \\
+  3 & 36,03  & 96.82  \\
+  4 & 28,37  & 96.82  \\
+  5 & 34,24  & 96.82  \\
+  6 & 29,32  & 96.82  \\
+  7 & 31,57  & 96.82  \\
+  8 & 29,67  & 96.82  \\
+  9 & 31,73  & 96.82  \\
+ 10 & 29,94  & 96.82  \\
+\rowcolor[gray]{0.5}
+\end{tabular}
+\rowcolors{1}{gray!0}{}
+\newline
+\includegraphics[width=\textwidth]{img/parallel-vs-non-parallel.png}
+
+From this we can see that we have a small performance loss (5\%) due the usage
+of MPI but if we have more than one core to run on we get drastical better
+performance.
  
 \section{Literature study results}
 
@@ -238,7 +342,7 @@ following articles:
 \subsection{Selected papers}
 %fixme: Remove non-relevant papers, if any
 %fixme: Formatting. Looks. like. shit. A little better now
-
+%fixme: can we write that we was lucky in a thesis?
 We were lucky enough to find papers that we felt were relevant from all of our
 search strings, and thus all papers that were found during the search were
 selected.
