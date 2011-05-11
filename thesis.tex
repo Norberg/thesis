@@ -581,6 +581,7 @@ data and requests.}
 \item{To \emph{Reduce costs} one can segment the workload and cache data and
 requests.}
 \end{itemize}
+
 However, they also make it clear that the validity of these techniques relies
 heavily on special hardware in order to guarantee scalability, and as such they
 only offer limited scalability. They proceed to state that "observations have led
@@ -661,6 +662,29 @@ that there will always be a certain sequential overhead which cannot be
 parallelized, and thus cannot be made faster by using parallelization.
 \\
 
+Gropp, Lusk, Doss and Skjellum\cite{gropp1996high} discusses the design choices made when
+designing the MPI standard and their popular implementation MPICH. They
+compare the cross platform standard that MPI is towards vendor specific
+predecessor, and the performance penalty's the cross platform approach resulted
+in. But also why it was a good tradeoff since applications don't needs to be
+rewritten when switching between computer systems. While the api towards
+the user of MPI is the same everywhere MPICH still provides the ability to
+have platform specific code in MPI to speed up the execution time on different
+platforms. Already in 1996 when this article was written several vendors
+had contributed code to get MPICH to run faster on their hardware.
+\\
+
+Miller \cite{millerparallel}\cite{miller2002pympi} gives a hand on approach on
+how to write scalable application with python and MPI, he also argues that
+even if a program written in C may run faster, the counterpart in python will
+be much easier to write and maintain, and therefore in many case would be
+preferred. The performance in the python case could also be increased by
+writing computing heavy parts in C, or the python code could be used as a 
+prototype for the real application. Miller gives detailed yet easy to 
+understand explanation of the principle behind MPI and how to write a
+parallel application with it.
+\\
+ 
 Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
 methods for evaluating the scalability of a system. They mean that a system is
 scalable "if it can be deployed effectively and economically over a range of
@@ -677,6 +701,7 @@ cost-effective system configuration at any given scale.}
 \item{To assess the need to re-engineer the system, given the available choices
 for an expected evolution of the system.}
 \end{itemize}
+
 
 \subsection{Analysis and discussion of findings}
 %contradictive is correctly spelled, just the spell-checker that sucks
@@ -713,6 +738,12 @@ writing computing heavy parts in C, or the python code could be used as a
 prototype for the real application. Miller gives detailed yet easy to
 understand explanation of the principle behind MPI and how to write a parallel
 application with it. 
+We also located a number of findings
+(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
+serves well as a reference in our post-mortem analysis, since they talk about
+scalability that is achieved using the same technology as we are using.
+\\
+
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
