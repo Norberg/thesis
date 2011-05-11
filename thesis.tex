@@ -355,14 +355,46 @@ application, and presents the results below.
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\\\small{ Measurements done with pyMetrics\cite{pymetrics}}
+\\\small{Measurements done with pyMetrics\cite{pymetrics}}
+\newline
+From this measurements we can see that the differences is minimal and
+McCabe Complexity\cite{mccabe1976complexity} don't differ at all between
+the applications. We also made a small survey in our project of 6 persons
+and found that no one thought that differed much in readability, the only
+thing was that it was 2 lines more code in the parallel version which they
+therefore saw it as a little bit more difficult. 
+\newline
 
-From  
+Below we show how the code looks to allow the reader to compare the readability
+of the different applications. 
 
+\paragraph{Common part of the application}
+\input{code/common.tex}
 \paragraph{Parallel version of the application}
 \input{code/bruteforce.tex}
 \paragraph{Non Parallel version of the application}
 \input{code/bruteforce_noparallel.tex}
+
+\subsection{Time}
+\rowcolors{1}{gray!40}{}
+\begin{tabular}{l c c}
+  \rowcolor[gray]{0.5}
+  {\bf Measurement} & {\bf python MPI (min)} & {\bf Non Scalable System(min)} \\
+  Time to develop &  60  &  60 \\
+  Time to extend   &   15  &  15  \\
+\rowcolor[gray]{0.5}
+\end{tabular}
+\rowcolors{1}{gray!0}{}
+\\\small{These times don't include time spent on prestudy, but rather the time
+it takes for someone with at least basic understanding of python and MPI. The
+pre study for MPI took about 1-2 hours for someone without previous experience
+to MPI}
+
+We can see that in with this type of applications MPI don't require any extra
+effort from the programmer if he or she have some previous knowledge about MPI.
+But on applications that isn't as easy to parallelize the difference may be 
+significant to MPI's disadvantage.
+
  
 \section{Literature study results}
 
