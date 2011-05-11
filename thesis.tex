@@ -683,6 +683,10 @@ writing computing heavy parts in C, or the python code could be used as a
 prototype for the real application. Miller gives detailed yet easy to 
 understand explanation of the principle behind MPI and how to write a
 parallel application with it.
+We also located a number of findings
+(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
+serves well as a reference in our post-mortem analysis, since they talk about
+scalability that is achieved using the same technology as we are using.
 \\
  
 Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
@@ -716,34 +720,6 @@ We feel confident that all our findings are valid and relevant to our research,
 and that we, with the help of these findings, will be able to answer our
 research questions and thus achieve our goal with this thesis.
 \\
-
-Gropp et al.\cite{gropp1996high} discusses the design choices made when
-designing the MPI standard and their popular implementation MPICH. They
-compare the cross platform standard that MPI is towards vendor specific
-predecessor, and the performance penalty's the cross platform approach resulted
-in. But also why it was a good tradeoff since applications don't needs to be
-rewritten when switching between computer systems. While the api towards
-the user of MPI is the same everywhere MPICH still provides the ability to
-have platform specific code in MPI to speed up the execution time on different
-platforms. Already in 1996 when this article was written several vendors
-had contributed code to get MPICH to run faster on their hardware.
-\\
-
-Miller \cite{miller2002pympi} \cite{millerparallel} gives a hand on approach on
-how to write scalable application with python and MPI, he also argues that
-even if a program written in C may run faster, the counterpart in python will
-be much easier to write and maintain, and therefore in many case would be
-preferred. The performance in the python case could also be increased by
-writing computing heavy parts in C, or the python code could be used as a
-prototype for the real application. Miller gives detailed yet easy to
-understand explanation of the principle behind MPI and how to write a parallel
-application with it. 
-We also located a number of findings
-(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
-serves well as a reference in our post-mortem analysis, since they talk about
-scalability that is achieved using the same technology as we are using.
-\\
-
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
