@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{random}\PY{o}{,} \PY{n+nn}{hashlib}
+\PY{k+kn}{from} \PY{n+nn}{boost} \PY{k+kn}{import} \PY{n}{mpi}
+\PY{k+kn}{from} \PY{n+nn}{glob} \PY{k+kn}{import} \PY{n}{glob}
+
+\PY{k}{def} \PY{n+nf}{find\PYZus{}password}\PY{p}{(}\PY{n}{brute\PYZus{}hash}\PY{p}{,} \PY{n}{start\PYZus{}chunk}\PY{p}{,} \PY{n}{nr\PYZus{}of\PYZus{}instances}\PY{p}{)}\PY{p}{:}
+	\PY{n}{files} \PY{o}{=} \PY{n}{glob}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{pympi-test/dicts/x*}\PY{l+s}{"}\PY{p}{)}
+	\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{start\PYZus{}chunk}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{files}\PY{p}{)}\PY{p}{,} \PY{n}{nr\PYZus{}of\PYZus{}instances}\PY{p}{)}\PY{p}{:} 
+		\PY{n}{words} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{files}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+		\PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{words}\PY{o}{.}\PY{n}{readlines}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+			\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+				\PY{k}{if} \PY{n}{i} \PY{o}{==} \PY{o}{-}\PY{l+m+mi}{1}\PY{p}{:}
+					\PY{n}{hash\PYZus{}word} \PY{o}{=} \PY{n}{word}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}
+				\PY{k}{else}\PY{p}{:}
+					\PY{n}{hash\PYZus{}word} \PY{o}{=} \PY{n}{word}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+				\PY{n}{new\PYZus{}hash} \PY{o}{=} \PY{n}{hashlib}\PY{o}{.}\PY{n}{sha256}\PY{p}{(}\PY{n}{hash\PYZus{}word}\PY{p}{)}\PY{o}{.}\PY{n}{hexdigest}\PY{p}{(}\PY{p}{)}
+				\PY{k}{if} \PY{n}{new\PYZus{}hash} \PY{o}{==} \PY{n}{brute\PYZus{}hash}\PY{p}{:}
+					\PY{k}{return} \PY{n}{hash\PYZus{}word}
+	\PY{k}{return} \PY{n+nb+bp}{None}
+
+\PY{k}{if} \PY{n}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}\PY{o}{==}\PY{l+s}{"}\PY{l+s}{\PYZus{}\PYZus{}main\PYZus{}\PYZus{}}\PY{l+s}{"}\PY{p}{:}
+	\PY{n}{rank}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{n}{mpi}\PY{o}{.}\PY{n}{rank}\PY{p}{,} \PY{n}{mpi}\PY{o}{.}\PY{n}{size}
+	\PY{n}{passwd} \PY{o}{=} \PY{n}{find\PYZus{}password}\PY{p}{(}\PY{n}{hashlib}\PY{o}{.}\PY{n}{sha256}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{simon22}\PY{l+s}{"}\PY{p}{)}\PY{o}{.}\PY{n}{hexdigest}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{rank}\PY{p}{,} \PY{n}{size}\PY{p}{)}
+	\PY{k}{print} \PY{n}{passwd}
+\end{Verbatim}
