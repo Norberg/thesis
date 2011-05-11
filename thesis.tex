@@ -718,10 +718,6 @@ writing computing heavy parts in C, or the python code could be used as a
 prototype for the real application. Miller gives detailed yet easy to 
 understand explanation of the principle behind MPI and how to write a
 parallel application with it.
-We also located a number of findings
-(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
-serves well as a reference in our post-mortem analysis, since they talk about
-scalability that is achieved using the same technology as we are using.
 \\
  
 Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
@@ -754,7 +750,55 @@ authors against one another to try to determine who's right and who's wrong.
 We feel confident that all our findings are valid and relevant to our research,
 and that we, with the help of these findings, will be able to answer our
 research questions and thus achieve our goal with this thesis.
+We also located a number of findings
+(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
+serves well as a reference in our post-mortem analysis, since they talk about
+scalability that is achieved using the same technology as we are using.
 \\
+
+If we analyze the findings from the literature review we find that there are a
+number of things one should do in order to achieve full scalability.  The
+system should be parallelized and, at least in a large-scale distributed
+system, somewhat modular. Parallelization should be done in order to segment
+the workload across several machines, which serves to both improve performance
+and generally increase system
+capacity\cite{fayad2005towards}\cite{haggander1999guidelines}\cite{caruso1997toward}.
+This can be done using technology such as
+MPI\cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel} or similar.
+
+This supports our own findings from developing and running a simple,
+parallelized password finder using MPI (see section 4), which achieved
+significantly improved performance compared to a non-parallelized version of
+the application, with little difference in development time. The improved
+performance coupled with the relative ease of development suggests that
+parallelization is, if done right, a relatively low-cost, effective method for
+achieving scalability. However, it is important to mention that while the
+difference in development time cost between our applications (parallel and
+non-parallel) was insignificant, the difference will likely become larger in
+more complex system development.
+
+Modularity is a way of making the system more adaptable by building the system
+of several modules, i.e. small applications that does not have any external
+dependencies\cite{lipson2007principles}. By making a system adaptable by
+modularity it gains the possibility to remove certain, non-vital functions, or
+add new ones, without harming the system. This can, in theory, enable it to
+deploy on a wide range of platforms with relatively little modifications.
+Modularity usually comes at the expense of slightly lesser performance and less
+reuse, but for widely distributed systems it might very well prove worth it in
+the end. To make an entire system modular is close to impossible, since keeping
+modules independent from each other is often not doable, but some modularity
+(and the adaptability gained from it) can prove to be an asset in certain
+systems, but our findings suggest that it is not vital in order to achieve
+scalability.
+
+Our findings suggest that the cost for developing a scalable system varies a
+lot depending on the system. While development costs can be kept quite low if
+done right, there is also the question of hardware. In some of our findings the
+scalability issue is, in part, addressed by simply adding better
+hardware\cite{fayad2005towards}\cite{haggander1999guidelines}, thereby making
+the system able to handle larger loads. While the cost of hardware is often
+seen as insignificant compared to development costs, it is a cost nonetheless,
+and thus cannot be ignored.
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
