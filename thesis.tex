@@ -21,7 +21,7 @@
 \newpage
 %fixme: Make this look better
 \begin{flushright}
-\scriptsize{\emph{It is not the strongest of the species that survives, nor the most 
+\large{\emph{It is not the strongest of the species that survives, nor the most 
 intelligent that survives. It is the one that is the most adaptable to change.}
 \newline
 \emph{- -Charles Darwin (1809-1882)}}
@@ -166,16 +166,8 @@ List of keywords:
 
 \subsection{Post-mortem analysis design}
 
-\subsubsection{Project}
-We will be collecting data from our experience of writing distributed and
-scalable software which we gained during the project. We are using OSGi
-\cite{marples2001open} as a main component in our distributed system, and we
-have concurrent requests to our backend API and our database. Since our system
-is both distributed and places high demands on scalability, we feel that we
-have at least some experience in the area.
-
 \subsubsection{MPI}
-We will also study a more classical and well tested approach to writing
+We will study a classical and well tested approach to writing
 scalable distributed systems with MPI \cite{gropp1996high}. MPI have easy
 to use python bindings \cite{miller2002pympi} \cite{millerparallel} we will be
 using to write test programs that test the capabilities of MPI and compare the
@@ -376,28 +368,11 @@ following articles:
 (See list of references)
 
 \subsection{Selected papers}
-%fixme: Remove non-relevant papers, if any
-%fixme: Formatting. Looks. Like. Shit.  A little better now
-%fixme: can we write that we was lucky in a thesis?
+During the process of reviewing the found papers we removed three that we felt
+did not, while being relevant, contribute to our cause, and thus they were
+removed. 
 
-We were lucky enough to find papers that we felt were relevant from all of our
-search strings, and thus all papers that were found during the search were
-selected.
-
-\paragraph{Services everywhere: Osgi in distributed environments}
-\cite{rellermeyer2007services}
-
-\emph{Distribution is increasingly becoming an important issue in both
-enterprise applications and mobile computing. OSGi it- self has only rudimental
-support for distribution, in forms of interfaces for interaction with Jini (R3)
-or UPnP (R3 + R4) infrastructures. When it comes to interconnecting different
-OSGi frameworks, there are only few solutions so far. In this paper, we present
-these existing solutions and compare the different approaches with our own
-R-OSGi. The goal of our open source project is to provide a seamless and non-
-invasive middleware for accessing remote services in OSGi frameworks. We
-explain the basic design principles of R- OSGi, such as transparent service
-access and spontaneous interaction, and briefly mention the internal structure
-and techniques used in R-OSGi, such as service discovery and smart proxies.}
+The ones we selected are mentioned here:
 
 \paragraph{Evaluating the scalability of distributed systems}
 \cite{jogalekar2000evaluating}
@@ -421,38 +396,6 @@ to exploit functional modularity, structural regularity and hierarchy.  This
 paper offers a number of observations about properties, dependencies and
 tradeoffs among these principles and proposes a formal model where such ele-
 ments can be examined.}
-
-\paragraph{The Open Services Gateway Initiative: an introductory overview} \cite{marples2001open}
-
-\emph{The Open Services Gateway Initiative is a consortium of more than 80
-companies from around the world working together to create an infrastructure to
-enable the deployment of services over wide area networks to local networks and
-devices. In this article we outline the benefits of OSGi, typical markets, and
-example use cases. The article goes on to discuss the architecture of the
-system and the capabilities that are afforded by the latest release. The
-article concludes with a brief glimpse into the future specifications that are
-expected to result from OSGi.}
-
-\paragraph{R-OSGi: Distributed applications through software modularization}
-\cite{rellermeyer2007r}
-
-\emph{In this paper we take advantage of the concepts developed for centralized
-module management, such as dynamic loading and unloading of modules, and show
-how they can be used to support the development and operation of distributed
-applications. We do so through R-OSGi, a distributed middleware platform that
-extends the centralized, industry- standard OSGi specification to support
-distributed module management.  To the developer, R-OSGi looks like a
-conventional module management tool. However, at deployment time, R-OSGi can be
-used to turn the application into a distributed application by simply
-indicating where the different modules should be deployed. At run time, R-OSGi
-represents distributed failures as module insertion and withdrawal operations
-so that the logic to deal with failures is the same as that employed to deal
-with dependencies among software modules. In doing so, R-OSGi greatly
-simplifies the development of distributed applications with no performance
-cost. In the paper we describe R-OSGi and several use cases.  We also show with
-extensive experiments that R-OSGi has a performance comparable or better than
-that of RMI or UPnP, both commonly used distribution mechanisms with far less
-functionality than R-OSGi.}
 
 \paragraph{Software engineering for the scalable distributed applications}
 \cite{van1998software}
@@ -601,36 +544,43 @@ establish balance between SMP performance, maintainability and flexibility.}
 
 \subsection{Literature Review Findings}
 
-van Steen et al.\cite{van1998software} defines a scalable system as a system
-that "should easily be able to accommodate higher performance levels", and
-argues that "systems should be scalable in the sense that they can easily be
-adapted to cooperate with future applications".  On the subject of the cost of
-scalability, they state that one important factor in scalable development "are
-the additional bounds that limit the increase of costs, and the degradation of
-performance, respectively", i.e. that if there are heavy constraints on
-development costs, scalability (in the form of performance) will suffer.  They
-also argue that one of the major problems with scalable development is that the
-solution as to how it is done depends heavily on the application itself.  They
-feel that constructing "general-purpose scalable solutions for replicating and
-distributing data and functionality, does not make much sense".
+van Steen, van der Zijden and Sips\cite{van1998software} defines a scalable
+system as a system that "should easily be able to accommodate higher
+performance levels", and argues that "systems should be scalable in the sense
+that they can easily be adapted to cooperate with future applications".  On the
+subject of the cost of scalability, they state that one important factor in
+scalable development "are the additional bounds that limit the increase of
+costs, and the degradation of performance, respectively", i.e. that if there
+are heavy constraints on development costs, scalability (in the form of
+performance) will suffer.  They also argue that one of the major problems with
+scalable development is that the solution as to how it is done depends heavily
+on the application itself.  They feel that constructing "general-purpose
+scalable solutions for replicating and distributing data and functionality,
+does not make much sense".
 \\
 
-Fayad et al.\cite{fayad2005towards} argues that there are several types of
-architectures one can use while developing a scalable system, most notably the
-ones they refer to as \emph{"Upward and Downward Scalability"}. They define upward
-scalability as "the capacity of handling increasing demands by adding new
-layers or functionalities" and downward scalability as "the ability of the
-architecture to adapt itself to a more constrained environment, by disabling
-certain functionalities".
+Fayad, Hamza and Sanchez \cite{fayad2005towards} argues that there are several
+types of architectures one can use while developing a scalable system, most
+notably the ones they refer to as \emph{"Upward and Downward Scalability"}.
+They define upward scalability as "the capacity of handling increasing demands
+by adding new layers or functionalities" and downward scalability as "the
+ability of the architecture to adapt itself to a more constrained environment,
+by disabling certain functionalities".
 They define three core elements one should consider when trying to achieve
 upward scalability as being \emph{Increased capacity and speed}, \emph{Improved
-efficiency} and \emph{Reduced cost}. They also suggest a number of techniques
-that can be used in order to address these elements. To achieve \emph{Increased
-capacity and speed} one can use faster machines, create a machine cluster, and
-use appliance servers. To \emph{Improve efficiency} one can use appliance
-servers, segment the workload, batch requests, aggregate user data, manage
-connections, and cache data and requests.  To \emph{Reduce costs} one can
-segment the workload and cache data and requests.
+efficiency} and \emph{Reduced cost}. 
+
+They also suggest a number of techniques that can be used in order to address
+these elements: 
+\begin{itemize}
+\item{To achieve \emph{Increased capacity and speed} one can use faster
+machines, create a machine cluster, and use appliance servers.} 
+\item{To \emph{Improve efficiency} one can use appliance servers, segment the
+workload, batch requests, aggregate user data, manage connections, and cache
+data and requests.}  
+\item{To \emph{Reduce costs} one can segment the workload and cache data and
+requests.}
+\end{itemize}
 However, they also make it clear that the validity of these techniques relies
 heavily on special hardware in order to guarantee scalability, and as such they
 only offer limited scalability. They proceed to state that "observations have led
@@ -648,9 +598,9 @@ dissimilar architectures".  Reduction is defined as the process of unbinding
 those external architectures from the structure without causing harm.
 \\
 
-Häggander et al.\cite{haggander1999guidelines} states 10 guidelines which they
-feel are relevant to consider when designing large real-time applications to
-successfully establish a balance between performance, maintainability and
+Häggander and Lundberg\cite{haggander1999guidelines} states 10 guidelines which
+they feel are relevant to consider when designing large real-time applications
+to successfully establish a balance between performance, maintainability and
 flexibility, all which are key elements in scalability. 
 
 They state the following guidelines:
@@ -698,10 +648,49 @@ or exchanged independently.  He states that while there are several drawbacks
 to modularity, most notably non-optimal performance and reuse.  Non-optimal
 performance since a integrated system can be more efficient "as information,
 energy and materials can be passed directly within the system", and reuse since
-for a module that fits in slot A might need to be adjusted to fit in slot B,
+ a module that fits in slot A might need to be adjusted to fit in slot B,
 which then might make it unusable in slot A. He argues, however, that
 modularity becomes justified in the long run thanks to the system becoming more
 adaptable.
+\\
+
+Amdahl \cite{amdahl1967validity} states (in what now is commonly referred to as
+"Amdahl's Law") that there is a limit to the speedup a program can gain from
+parallel processing (which is an important factor in scalability).  He means
+that there will always be a certain sequential overhead which cannot be
+parallelized, and thus cannot be made faster by using parallelization.
+\\
+
+Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
+methods for evaluating the scalability of a system. They mean that a system is
+scalable "if it can be deployed effectively and economically over a range of
+different "sizes"". 
+
+They state four different cases where their proposed scalability analysis can
+be of use:
+\begin{itemize}
+\item{To make a strategic choice of a scaling strategy, among several
+alternatives.}
+\item{To tune the available scaling enablers for achieving the most
+cost-effective system configuration at any given scale.}
+\item{To assess the need for providing more scaling enablers.}
+\item{To assess the need to re-engineer the system, given the available choices
+for an expected evolution of the system.}
+\end{itemize}
+
+\subsection{Analysis and discussion of findings}
+%contradictive is correctly spelled, just the spell-checker that sucks
+None of the findings are, as we see it, contradictive to one another, i.e. we
+have found no opposing results.  This indicates that there is somewhat of a
+consensus regarding as to what scalability is, what the advantages and
+disadvantages of it are, and how it is best achieved. As we see it, this is a
+good thing, since it gives us a clear picture of how to reach the goals of this
+paper, and saves us the trouble of having to match the opinions of different
+authors against one another to try to determine who's right and who's wrong.
+We feel confident that all our findings are valid and relevant to our research,
+and that we, with the help of these findings, will be able to answer our
+research questions and thus achieve our goal with this thesis.
+
 \\
 
 Gropp et al.\cite{gropp1996high} discusses the design choices made when
