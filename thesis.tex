@@ -19,7 +19,7 @@
 \newpage
 %fixme: Make this look better
 \begin{flushright}
-\scriptsize{\emph{It is not the strongest of the species that survives, nor the most 
+\large{\emph{It is not the strongest of the species that survives, nor the most 
 intelligent that survives. It is the one that is the most adaptable to change.}
 \newline
 \emph{- -Charles Darwin (1809-1882)}}
@@ -164,16 +164,8 @@ List of keywords:
 
 \subsection{Post-mortem analysis design}
 
-\subsubsection{Project}
-We will be collecting data from our experience of writing distributed and
-scalable software which we gained during the project. We are using OSGi
-\cite{marples2001open} as a main component in our distributed system, and we
-have concurrent requests to our backend API and our database. Since our system
-is both distributed and places high demands on scalability, we feel that we
-have at least some experience in the area.
-
 \subsubsection{MPI}
-We will also study a more classical and well tested approach to writing
+We will study a classical and well tested approach to writing
 scalable distributed systems with MPI \cite{gropp1996high}. MPI have easy
 to use python bindings \cite{miller2002pympi} \cite{millerparallel} we will be
 using to write test programs that test the capabilities of MPI and compare the
@@ -374,13 +366,11 @@ following articles:
 (See list of references)
 
 \subsection{Selected papers}
-%fixme: Remove non-relevant papers, if any
-%fixme: Formatting. Looks. Like. Shit.  A little better now
-%fixme: can we write that we was lucky in a thesis?
+During the process of reviewing the found papers we removed three that we felt
+did not, while being relevant, contribute to our cause, and thus they were
+removed. 
 
-We were lucky enough to find papers that we felt were relevant from all of our
-search strings, and thus all papers that were found during the search were
-selected.
+The ones we selected are mentioned here:
 
 \paragraph{Evaluating the scalability of distributed systems}
 \cite{jogalekar2000evaluating}
@@ -685,6 +675,19 @@ cost-effective system configuration at any given scale.}
 \item{To assess the need to re-engineer the system, given the available choices
 for an expected evolution of the system.}
 \end{itemize}
+
+\subsection{Analysis and discussion of findings}
+%contradictive is correctly spelled, just the spell-checker that sucks
+None of the findings are, as we see it, contradictive to one another, i.e. we
+have found no opposing results.  This indicates that there is somewhat of a
+consensus regarding as to what scalability is, what the advantages and
+disadvantages of it are, and how it is best achieved. As we see it, this is a
+good thing, since it gives us a clear picture of how to reach the goals of this
+paper, and saves us the trouble of having to match the opinions of different
+authors against one another to try to determine who's right and who's wrong.
+We feel confident that all our findings are valid and relevant to our research,
+and that we, with the help of these findings, will be able to answer our
+research questions and thus achieve our goal with this thesis.
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
