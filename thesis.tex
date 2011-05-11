@@ -1,4 +1,4 @@
-\documentclass{llncs}
+\documentclass{article}
 \usepackage{tabularx}
 \usepackage{ctable}
 \usepackage[table]{xcolor}
@@ -7,14 +7,14 @@
 \usepackage{multirow}
 \usepackage[utf8x]{inputenc}
 \usepackage{fancyvrb}
-\usepackage{llncsdoc}
+%\usepackage{llncsdoc}
 
 \begin{document}
 \input{code/style.tex}
 \title{Scalable applications in a distributed environment}
 \author{Simon Norberg - norberg.simon@gmail.com\\
         Filip Andersson - flpandersson@gmail.com }
-\institute{Blekinge Institute of Technology}
+%\institute{Blekinge Institute of Technology}
 \date{\today}
 \maketitle
 
@@ -339,6 +339,8 @@ performance.
 
 
 \subsection{Complexity}
+We have measured the complexity of both our parallel and non parallel
+application, and presents the results below.
 
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
@@ -354,9 +356,12 @@ performance.
 \end{tabular}
 \rowcolors{1}{gray!0}{}
 \\\small{ Measurements done with pyMetrics\cite{pymetrics}}
-\paragraph{Parallell version of the application}
+
+From  
+
+\paragraph{Parallel version of the application}
 \input{code/bruteforce.tex}
-\paragraph{Non Parallell version of the application}
+\paragraph{Non Parallel version of the application}
 \input{code/bruteforce_noparallel.tex}
  
 \section{Literature study results}
