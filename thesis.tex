@@ -6,10 +6,10 @@
 \usepackage{url}
 \usepackage{multirow}
 \usepackage[utf8x]{inputenc}
-
+\usepackage{fancyvrb}
 
 \begin{document}
- 
+\input{code/style.tex}
 \title{Scalable applications in a distributed environment}
 \author{Simon Norberg - norberg.simon@gmail.com\\
         Filip Andersson - flpandersson@gmail.com }
@@ -340,8 +340,30 @@ scalable application
 \includegraphics[width=\textwidth]{img/parallel-vs-non-parallel.png}
 
 From this we can see that we have a small performance loss (5\%) due the usage
-of MPI but if we have more than one core to run on we get drastical better
+of MPI but if we have more than one core to run on we get drastically better
 performance.
+
+
+\subsection{Complexity}
+
+\rowcolors{1}{gray!40}{}
+\begin{tabular}{l c c}
+  \rowcolor[gray]{0.5}
+  {\bf Measurement} & {\bf python MPI} & {\bf Non Scalable System} \\
+  Lines of code &  23  &  21 \\
+  Block Depth   &   5  &   5  \\
+  Blocks        &   9  &   9  \\
+  Tokens        & 267  & 242  \\
+  McCabe Complexity\cite{mccabe1976complexity} \_\_main\_\_ & 2  & 2 \\
+  McCabe Complexity\cite{mccabe1976complexity} find\_password & 7  & 7  \\
+\rowcolor[gray]{0.5}
+\end{tabular}
+\rowcolors{1}{gray!0}{}
+\\\small{ Measurements done with pyMetrics\cite{pymetrics}}
+\paragraph{Parallell version of the application}
+\input{code/bruteforce.tex}
+\paragraph{Non Parallell version of the application}
+\input{code/bruteforce_noparallel.tex}
  
 \section{Literature study results}
 
