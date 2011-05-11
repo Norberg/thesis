@@ -232,12 +232,12 @@ don't have a high usage yet and maybe never will.}
 \end{itemize}
 
 
-\section{Post mortem results}
+\section{Post mortem results}\label{mpi}
 \subsection{Pre study}
 We started by look at the different MPI bindings provided for python, the result
 was overwhelming and we found several different bindings providing the same
 functionality. After some research we chose to use boost-mpi python bindings
-\cite{boost-mpi}. This bindings locked well maintained and had a proper
+\cite{boost-mpi}. These bindings looked well maintained and had a proper
 debian package and had example code that worked out of the box, as opposed to
 the other bindings we tested. The problem was probably that it existed more
 than one library with the exact same name but was used differently and it was
@@ -251,7 +251,7 @@ The reason is that it requires a lot of cpu time to calculate and it is
 very easy to split up in several parts and doing them parallel.
 
 \subsection{Solution}
-The solutions works by iterating over a dictionary off $\sim$3.6 Million words
+The solutions works by iterating over a dictionary of $\sim$3.6 Million words
 and test if the word matches the supplied hash and also check if word followed
 by a digit match. The reason that we also check the word followed by a digit
 is to increase the load on the system due to the execution time being to 
@@ -303,9 +303,9 @@ new instance of MPI stared.
 increasing when adding more instances than 4. }
 
 We can see that the performance almost increase linear when adding more
-resource to the system. This shows that our application don't have any
+resources to the system. This shows that our application don't have any
 major bottlenecks and it would be easy to increase the performance
-of the application by just adding more resource when its needed.
+of the application by just adding more resources when its needed.
 
 \subsection{Scalable vs. Non Scalable Systems}
 This table and diagrams compare our scalable application towards an non
@@ -355,7 +355,7 @@ application, and presents the results below.
 \rowcolors{1}{gray!0}{}
 \\\small{Measurements done with pyMetrics\cite{pymetrics}}
 \newline
-From this measurements we can see that the differences is minimal and
+From these measurements we can see that the differences is minimal and
 McCabe Complexity\cite{mccabe1976complexity} don't differ at all between
 the applications. We also made a small survey in our project of 6 persons
 and found that no one thought that differed much in readability, the only
@@ -641,22 +641,22 @@ flexibility, all which are key elements in scalability.
 
 They state the following guidelines:
 \begin{enumerate}
-\item{Consider a multiprocessor when the supposed application design consists
-of many independent system instances.}
-\item{Consider a multiprocessor when the supposed application design is based on
+\item{"Consider a multiprocessor when the supposed application design consists
+of many independent system instances."}
+\item{"Consider a multiprocessor when the supposed application design is based on
 third party systems which have shown themselves to scale-up well on 
-multiprocessors.}
-\item{Reconsider using traditional performance optimization techniques instead
-of multiprocessors.}
-\item{Consider multiple processes for high performance and scalability first.}
-\item{Consider multithreaded programming in combination with multiple processes.}
-\item{Avoid frequent allocations and de-allocations of dynamic memory.}
-\item{Meet maintainability requirements with exchangeable components instead
- of extendable components.}
-\item{Evaluate a heap implementation optimized for multiprocessors.}
-\item{Utilize the stack memory if possible.}
-\item{Consider multiple multithreaded processes for maximal maintainability, 
-flexibility and performance.}
+multiprocessors."}
+\item{"Reconsider using traditional performance optimization techniques instead
+of multiprocessors."}
+\item{"Consider multiple processes for high performance and scalability first."}
+\item{"Consider multithreaded programming in combination with multiple processes."}
+\item{"Avoid frequent allocations and de-allocations of dynamic memory."}
+\item{"Meet maintainability requirements with exchangeable components instead
+ of extendable components."}
+\item{"Evaluate a heap implementation optimized for multiprocessors."}
+\item{"Utilize the stack memory if possible."}
+\item{"Consider multiple multithreaded processes for maximal maintainability, 
+flexibility and performance."}
 \end{enumerate}
 
 They do, however, emphasize that "it is not always possible to to maximize
@@ -728,18 +728,18 @@ different "sizes"".
 They state four different cases where their proposed scalability analysis can
 be of use:
 \begin{itemize}
-\item{To make a strategic choice of a scaling strategy, among several
-alternatives.}
-\item{To tune the available scaling enablers for achieving the most
-cost-effective system configuration at any given scale.}
-\item{To assess the need for providing more scaling enablers.}
-\item{To assess the need to re-engineer the system, given the available choices
-for an expected evolution of the system.}
+\item{"To make a strategic choice of a scaling strategy, among several
+alternatives."}
+\item{"To tune the available scaling enablers for achieving the most
+cost-effective system configuration at any given scale."}
+\item{"To assess the need for providing more scaling enablers."}
+\item{"To assess the need to re-engineer the system, given the available choices
+for an expected evolution of the system."}
 \end{itemize}
 
 
-\subsection{Analysis and discussion of findings}
-%contradictive is correctly spelled, just the spell-checker that sucks
+\section{Analysis and discussion}
+
 None of the findings are, as we see it, contradictive to one another, i.e. we
 have found no opposing results.  This indicates that there is somewhat of a
 consensus regarding as to what scalability is, what the advantages and
@@ -767,7 +767,7 @@ This can be done using technology such as
 MPI\cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel} or similar.
 
 This supports our own findings from developing and running a simple,
-parallelized password finder using MPI (see section 4), which achieved
+parallelized password finder using MPI (section \ref{mpi}), which achieved
 significantly improved performance compared to a non-parallelized version of
 the application, with little difference in development time. The improved
 performance coupled with the relative ease of development suggests that
@@ -799,6 +799,14 @@ hardware\cite{fayad2005towards}\cite{haggander1999guidelines}, thereby making
 the system able to handle larger loads. While the cost of hardware is often
 seen as insignificant compared to development costs, it is a cost nonetheless,
 and thus cannot be ignored.
+The cost of development is hard to measure, since, according to us, a system
+can never be \emph{too scalable}, and thus an effort to make a system as
+scalable as possible may go on for a very long time. However, it might not
+always be worthwhile to make a system scalable beyond a certain point. As our
+findings suggest, there is a limit to how scalable a system can actually
+become\cite{amdahl1967validity}, and so we feel that it is important to have a
+clear understanding, from the start, of how much effort should be put into
+making the system scalable. 
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
