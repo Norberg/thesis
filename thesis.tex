@@ -19,7 +19,7 @@
 \maketitle
 
 \newpage
-\noindent\large{\emph{It is not the strongest of the species that survives, nor the most 
+\noindent{\large \emph{It is not the strongest of the species that survives, nor the most 
 intelligent that survives. It is the one that is the most adaptable to change.}
 \begin{flushright}
 \emph{- -Charles Darwin (1809-1882)}
@@ -279,7 +279,7 @@ compare to our parallel application.
 \subsection{Scalability}
 This table and diagram shows how much performance is increased for every
 new instance of MPI stared.
-
+\begin{table}[h]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
@@ -297,10 +297,13 @@ new instance of MPI stared.
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-
+\end{table}
+\begin{figure}[h!]
+\center
 \includegraphics[width=\textwidth]{img/scalabilty-pympi.png}
-\\\small{ Total number of cores in the system was 4, so performance stopped
+\caption{Total number of cores in the system was 4, so performance stopped
 increasing when adding more instances than 4. }
+\end{figure}
 
 We can see that the performance almost increase linear when adding more
 resources to the system. This shows that our application don't have any
@@ -353,7 +356,7 @@ application, and presents the results below.
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\\\small{Measurements done with pyMetrics\cite{pymetrics}}
+\\{\small Measurements done with pyMetrics\cite{pymetrics}}
 \newline
 From these measurements we can see that the differences is minimal and
 McCabe Complexity\cite{mccabe1976complexity} don't differ at all between
@@ -383,7 +386,7 @@ of the different applications.
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\\\small{These times don't include time spent on prestudy, but rather the time
+\\{\small These times don't include time spent on prestudy, but rather the time
 it takes for someone with at least basic understanding of python and MPI. The
 pre study for MPI took about 1-2 hours for someone without previous experience
 to MPI}
@@ -572,8 +575,8 @@ establish balance between SMP performance, maintainability and flexibility.}
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\\\small \emph{RQ{n} = which research question the paper answers,
- PM-MPI = papers related to Post Mortem }
+\\{\small RQ{n} = which research question the paper answers,
+ PM-MPI = papers related to Post Mortem }}
 
 \section{Main findings from Literature Review}
 
