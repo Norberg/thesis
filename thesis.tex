@@ -4,6 +4,7 @@
 \usepackage[table]{xcolor}
 \usepackage{color}
 \usepackage{url}
+\usepackage{appendix}
 \usepackage{multirow}
 \usepackage[utf8x]{inputenc}
 \usepackage{fancyvrb}
@@ -24,6 +25,9 @@ intelligent that survives. It is the one that is the most adaptable to change.}
 \begin{flushright}
 \emph{- -Charles Darwin (1809-1882)}
 \end{flushright}
+
+\newpage
+\tableofcontents
 \newpage
  
 %\begin{abstract}
@@ -41,9 +45,24 @@ If a system looses its ability to scale, and thereby cannot support more users,
 it may quickly loose its target audience to a competitor. Furthermore, being able 
 to modify and update parts of the system separately, rather than everything at 
 once, makes application maintenance significantly easier and downtime minimal 
-in production systems.
+in production systems. The focus of this thesis is to determine how one can
+successfully develop a scalable system, and what extra cost and effort this
+requires compared to developing a non-scalable system. We feel that this is
+important since not all systems benefit from being scalable, and thus the
+eventual extra costs may not be justified. On the other hand, if a system would
+benefit from being scalable, but is not, developers might risk loosing a lot in
+the long run. We are looking to solve this problem by proposing a few pointers
+of things we find to be important to consider, both when trying to determine
+however one should develop scalable or not, and if so, how it can be done. We
+will be researching this by doing a literature review, where we analyze what
+others has to say on the subject, and a post-mortem analysis, where we try to
+estimate the benefits and costs of scalability by developing a scalable system
+of our own.
 
 \subsection{Background}
+
+In this section we explain the concept of scalability, as well as some general
+background concepts related to the subject.
 
 A scalable system is a system that is flexible and adaptive to changing
 conditions, such as an increase in system load, new system components etc., and
@@ -51,15 +70,6 @@ that can be economically deployed in many configurations, small as well as
 large \cite{jogalekar2000evaluating}. The scalability of a system depends on
 how well it can exploit functional modularity, structural regularity and
 hierarchy \cite{lipson2007principles}.
-
-To make a system modular it can be implemented using \emph{OSGi} and
-\emph{R-OSGi} \cite{rellermeyer2007services} \cite{marples2001open}. By using these frameworks one can
-update and add components to ones system at will, and manage different
-components without having to bring down the entire system. When deployed,
-R-OSGi can be used to turn the application into a distributed application by
-indicating where the different modules should be deployed
-\cite{rellermeyer2007r}, which can be used to greatly simplify development of
-distributed systems.
 
 \emph{Distributed Computing}, perhaps more known as \emph{Cloud Computing}, is becoming a
 more and more common approach to software development. The basic concept of
@@ -134,33 +144,6 @@ might be cheaper ways of developing it.}
 We will be using a Literature Review and a Post-mortem analysis to conduct our 
 research. 
 
-\subsection{Literature review design}
-
-We will be searching for literature for our review mainly on Google Scholar and
-on BTH's article database Elin. The keywords we will be using while searching 
-will be focused on terms related to distributed systems and scalability.
-
-The research started with the keywords scalable and distributed systems,
-from there we read article that looked promising first by just looking on
-the topic and if it looked relevant for our thesis, we took a closer look
-at the abstract. After reading the abstract we made a decision if the paper
-was in the scope of our project and if it was that we selected it. And used
-terminology found in that paper to find further papers on which the same 
-process was used. 
-\newline
-
-List of keywords:
-\begin{itemize}
-\item{scalable systems (Google Scholar)}
-\item{python parallel (Google Scholar)}
-\item{mpi (Google Scholar)}
-\item{Distributed systems AND scalable design (ELIN)}
-\item{Distributed environments services osgi (ELIN)}
-\item{Scalable distribution AND software (ELIN)}
-\item{Scalable development AND cost (ELIN)}
-\item{Scalability AND distributed systems (ELIN)}
-\item{Distributed Applications AND Software Modularization (ELIN)}
-\end{itemize}
 
 \subsection{Post-mortem analysis design}
 
@@ -413,7 +396,308 @@ following articles:
 
 (See list of references)
 
-\subsection{Selected papers}
+
+\subsection{Mapping between articles and Research Questions}
+\rowcolors{1}{gray!40}{}
+\begin{tabular}{p{8cm} c c r}
+  \rowcolor[gray]{0.5}
+  {\bf Paper} & {\bf Research Questions} \\
+  Services everywhere: Osgi in distributed environments & RQ1.1 \\
+  Evaluating in scalability of distributed systems & RQ3 \\
+  Principles of modularity, regularity and hierarchy for scalable systems & RQ1, RQ3 \\
+  R-OSGi: Distributed applications through software modularization & RQ1, RQ1.1 \\
+  Software engineering for scalable distributed applications & RQ1, RQ2 \\
+  Towards a scalable design for command and control systems & RQ1, RQ3 \\
+  Towards Scalable and Adaptable Software Architectures & RQ1, RQ2 \\
+  A high-performance, portable implementation of the MPI message passing interface standard & RQ1, RQ1.1, PM-MPI \\
+  pyMPI - An introduction to parallel Python using MPI & RQ1, RQ1.1, PM-MPI \\
+  Parallel, distributed scripting with python & RQ1, RQ1.1, PM-MPI \\
+  Validity of the single processor approach to achieving large scale computing capabilities & RQ3 \\
+  Ten Performance Guidelines for Balancing Software Quality Attributes when Developing Large Real-time Applications for Multiprocessors & RQ1, RQ2, RQ3 \\
+  
+\rowcolor[gray]{0.5}
+\end{tabular}
+\rowcolors{1}{gray!0}{}
+\\{\small RQ{n} = which research question the paper answers,
+ PM-MPI = papers related to Post Mortem }}
+
+\section{Literature Review results}
+
+\subsection{Literature review design}
+
+We will be searching for literature for our review mainly on Google Scholar and
+on BTH's article database Elin. The keywords we will be using while searching 
+will be focused on terms related to distributed systems and scalability.
+
+The research started with the keywords scalable and distributed systems,
+from there we read article that looked promising first by just looking on
+the topic and if it looked relevant for our thesis, we took a closer look
+at the abstract. After reading the abstract we made a decision if the paper
+was in the scope of our project and if it was that we selected it. And used
+terminology found in that paper to find further papers on which the same 
+process was used. 
+\newline
+
+List of keywords:
+\begin{itemize}
+\item{scalable systems (Google Scholar)}
+\item{python parallel (Google Scholar)}
+\item{mpi (Google Scholar)}
+\item{Distributed systems AND scalable design (ELIN)}
+\item{Distributed environments services osgi (ELIN)}
+\item{Scalable distribution AND software (ELIN)}
+\item{Scalable development AND cost (ELIN)}
+\item{Scalability AND distributed systems (ELIN)}
+\item{Distributed Applications AND Software Modularization (ELIN)}
+\end{itemize}
+
+\subsection{Literature Review Findings}
+
+\subsubsection{Summary of findings}
+
+None of the findings are, as we see it, contradictive to one another, i.e. we
+have found no opposing results.  This indicates that there is somewhat of a
+consensus regarding as to what scalability is, what the advantages and
+disadvantages of it are, and how it is best achieved. As we see it, this is a
+good thing, since it gives us a clear picture of how to reach the goals of this
+paper, and saves us the trouble of having to match the opinions of different
+authors against one another to try to determine who's right and who's wrong.
+We feel confident that all our findings are valid and relevant to our research,
+and that we, with the help of these findings, will be able to answer our
+research questions and thus achieve our goal with this thesis.
+We also located a number of findings
+(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
+serves well as a reference in our post-mortem analysis, since they talk about
+scalability that is achieved using the same technology as we are using.
+
+\subsubsection{Findings}
+
+\textbf{Research Question 1 and 2:}
+
+van Steen, van der Zijden and Sips\cite{van1998software} defines a scalable
+system as a system that "should easily be able to accommodate higher
+performance levels", and argues that "systems should be scalable in the sense
+that they can easily be adapted to cooperate with future applications".  On the
+subject of the cost of scalability, they state that one important factor in
+scalable development "are the additional bounds that limit the increase of
+costs, and the degradation of performance, respectively", i.e. that if there
+are heavy constraints on development costs, scalability (in the form of
+performance) will suffer.  They also argue that one of the major problems with
+scalable development is that the solution as to how it is done depends heavily
+on the application itself.  They feel that constructing "general-purpose
+scalable solutions for replicating and distributing data and functionality,
+does not make much sense".
+\\
+
+Fayad, Hamza and Sanchez \cite{fayad2005towards} argues that there are several
+types of architectures one can use while developing a scalable system, most
+notably the ones they refer to as \emph{"Upward and Downward Scalability"}.
+They define upward scalability as "the capacity of handling increasing demands
+by adding new layers or functionalities" and downward scalability as "the
+ability of the architecture to adapt itself to a more constrained environment,
+by disabling certain functionalities".
+They define three core elements one should consider when trying to achieve
+upward scalability as being \emph{Increased capacity and speed}, \emph{Improved
+efficiency} and \emph{Reduced cost}. 
+
+They also suggest a number of techniques that can be used in order to address
+these elements: 
+\begin{itemize}
+\item{"To achieve \emph{Increased capacity and speed} one can use faster
+machines, create a machine cluster, and use appliance servers."} 
+\item{"To \emph{Improve efficiency} one can use appliance servers, segment the
+workload, batch requests, aggregate user data, manage connections, and cache
+data and requests."}  
+\item{"To \emph{Reduce costs} one can segment the workload and cache data and
+requests."}
+\end{itemize}
+
+However, they also make it clear that the validity of these techniques relies
+heavily on special hardware in order to guarantee scalability, and as such they
+only offer limited scalability. They proceed to state that "observations have led
+us to confirm that implementing full scalability is not an obvious task in software
+development, and especially with conventional approaches".
+Fayad et al. also talks about something called \emph{"Horizontal Scalability"},
+which "emphasizes the ability of the architecture to extend their boundaries by
+establishing connections with other software architectures in an efficient
+manner".  They further state that horizontal scalability can be achieved in two
+directions, referred to as \emph{Scaling Out} and \emph{Scaling In}, also
+called \emph{Extensibility} and \emph{Reduction}.  Extensibility is defined as
+the capacity of architectures to bind external architectures (called "leaves")
+to their structure, and by doing so "creating a synergy between these
+dissimilar architectures".  Reduction is defined as the process of unbinding
+those external architectures from the structure without causing harm.
+\\
+
+Häggander and Lundberg\cite{haggander1999guidelines} states 10 guidelines which
+they feel are relevant to consider when designing large real-time applications
+to successfully establish a balance between performance, maintainability and
+flexibility, all which are key elements in scalability. 
+
+They state the following guidelines:
+\begin{enumerate}
+\item{"Consider a multiprocessor when the supposed application design consists
+of many independent system instances."}
+\item{"Consider a multiprocessor when the supposed application design is based on
+third party systems which have shown themselves to scale-up well on 
+multiprocessors."}
+\item{"Reconsider using traditional performance optimization techniques instead
+of multiprocessors."}
+\item{"Consider multiple processes for high performance and scalability first."}
+\item{"Consider multithreaded programming in combination with multiple processes."}
+\item{"Avoid frequent allocations and de-allocations of dynamic memory."}
+\item{"Meet maintainability requirements with exchangeable components instead
+ of extendable components."}
+\item{"Evaluate a heap implementation optimized for multiprocessors."}
+\item{"Utilize the stack memory if possible."}
+\item{"Consider multiple multithreaded processes for maximal maintainability, 
+flexibility and performance."}
+\end{enumerate}
+
+They do, however, emphasize that "it is not always possible to to maximize
+each quality attribute in a design, thereby making trade-offs necessary", and
+that one of the major challenges in software design is to find solutions that
+offers a good balance of these attributes.
+\\
+
+\textbf{Research Question 1 and 3:}
+
+Caruso \cite{caruso1997toward} states that there are certain important things
+to consider when developing a scalable system that is to be capable of handling
+a wide range of load levels. He argues that the most important factor is "the
+concept of subdividing load into dynamically allocable, load-sharing fragments
+(subclients)", and that by doing this the system gains the ability to adjust to
+a wide range of different load/demand levels.
+He also mentions that one of the characteristics of a scalable system as being
+able to access existing data flows efficiently as well as creating new ones.
+\\
+
+Lipson \cite{lipson2007principles} argues that an important part of scalable
+systems is \emph{modularity}. He defines modularity as being the ability to
+take a part of a system which isn't dependant on any parts outside of itself,
+which then is a module. If one then has several such modules, they can be used
+as "building blocks" to create an application, where each module can be removed
+or exchanged independently.  He states that while there are several drawbacks
+to modularity, most notably non-optimal performance and reuse.  Non-optimal
+performance since a integrated system can be more efficient "as information,
+energy and materials can be passed directly within the system", and reuse since
+ a module that fits in slot A might need to be adjusted to fit in slot B,
+which then might make it unusable in slot A. He argues, however, that
+modularity becomes justified in the long run thanks to the system becoming more
+adaptable.
+\\
+
+Amdahl \cite{amdahl1967validity} states (in what now is commonly referred to as
+"Amdahl's Law") that there is a limit to the speedup a program can gain from
+parallel processing (which is an important factor in scalability).  He means
+that there will always be a certain sequential overhead which cannot be
+parallelized, and thus cannot be made faster by using parallelization.
+\\
+
+\textbf{Research Question 3:}
+
+Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
+methods for evaluating the scalability of a system. They mean that a system is
+scalable "if it can be deployed effectively and economically over a range of
+different "sizes"". 
+
+They state four different cases where their proposed scalability analysis can
+be of use:
+\begin{itemize}
+\item{"To make a strategic choice of a scaling strategy, among several
+alternatives."}
+\item{"To tune the available scaling enablers for achieving the most
+cost-effective system configuration at any given scale."}
+\item{"To assess the need for providing more scaling enablers."}
+\item{"To assess the need to re-engineer the system, given the available choices
+for an expected evolution of the system."}
+\end{itemize}
+
+\textbf{Research Question 1.1:}
+
+Gropp, Lusk, Doss and Skjellum\cite{gropp1996high} discusses the design choices made when
+designing the MPI standard and their popular implementation MPICH. They
+compare the cross platform standard that MPI is towards vendor specific
+predecessor, and the performance penalty's the cross platform approach resulted
+in. But also why it was a good tradeoff since applications don't needs to be
+rewritten when switching between computer systems. While the api towards
+the user of MPI is the same everywhere MPICH still provides the ability to
+have platform specific code in MPI to speed up the execution time on different
+platforms. Already in 1996 when this article was written several vendors
+had contributed code to get MPICH to run faster on their hardware.
+\\
+
+Miller \cite{millerparallel}\cite{miller2002pympi} gives a hand on approach on
+how to write scalable application with python and MPI, he also argues that
+even if a program written in C may run faster, the counterpart in python will
+be much easier to write and maintain, and therefore in many case would be
+preferred. The performance in the python case could also be increased by
+writing computing heavy parts in C, or the python code could be used as a 
+prototype for the real application. Miller gives detailed yet easy to 
+understand explanation of the principle behind MPI and how to write a
+parallel application with it.
+
+\section{Analysis and discussion}
+
+If we analyze the findings from the literature review we find that there are a
+number of things one should do in order to achieve full scalability.  The
+system should be parallelized and, at least in a large-scale distributed
+system, somewhat modular. Parallelization should be done in order to segment
+the workload across several machines, which serves to both improve performance
+and generally increase system
+capacity\cite{fayad2005towards}\cite{haggander1999guidelines}\cite{caruso1997toward}.
+This can be done using technology such as
+MPI\cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel} or similar.
+
+This supports our own findings from developing and running a simple,
+parallelized password finder using MPI (section \ref{mpi}), which achieved
+significantly improved performance compared to a non-parallelized version of
+the application, with little difference in development time. The improved
+performance coupled with the relative ease of development suggests that
+parallelization is, if done right, a relatively low-cost, effective method for
+achieving scalability. However, it is important to mention that while the
+difference in development time cost between our applications (parallel and
+non-parallel) was insignificant, the difference will likely become larger in
+more complex system development.
+
+Modularity is a way of making the system more adaptable by building the system
+of several modules, i.e. small applications that does not have any external
+dependencies\cite{lipson2007principles}. By making a system adaptable by
+modularity it gains the possibility to remove certain, non-vital functions, or
+add new ones, without harming the system. This can, in theory, enable it to
+deploy on a wide range of platforms with relatively little modifications.
+Modularity usually comes at the expense of slightly lesser performance and less
+reuse, but for widely distributed systems it might very well prove worth it in
+the end. To make an entire system modular is close to impossible, since keeping
+modules independent from each other is often not doable, but some modularity
+(and the adaptability gained from it) can prove to be an asset in certain
+systems, but our findings suggest that it is not vital in order to achieve
+scalability.
+
+Our findings suggest that the cost for developing a scalable system varies a
+lot depending on the system. While development costs can be kept quite low if
+done right, there is also the question of hardware. In some of our findings the
+scalability issue is, in part, addressed by simply adding better
+hardware\cite{fayad2005towards}\cite{haggander1999guidelines}, thereby making
+the system able to handle larger loads. While the cost of hardware is often
+seen as insignificant compared to development costs, it is a cost nonetheless,
+and thus cannot be ignored.
+The cost of development is hard to measure, since, according to us, a system
+can never be \emph{too scalable}, and thus an effort to make a system as
+scalable as possible may go on for a very long time. However, it might not
+always be worthwhile to make a system scalable beyond a certain point. As our
+findings suggest, there is a limit to how scalable a system can actually
+become\cite{amdahl1967validity}, and so we feel that it is important to have a
+clear understanding, from the start, of how much effort should be put into
+making the system scalable.
+
+\bibliographystyle{unsrt}
+\bibliography{reference}
+
+\newpage
+ 
+\appendix
+\section{Selected papers for Literature Review}
 During the process of reviewing the found papers we removed three that we felt
 did not, while being relevant, contribute to our cause, and thus they were
 removed. 
@@ -565,260 +849,4 @@ and scalable performance.  Our result is presented in form of 10 guidelines
 assembled with the aim of helping designers of large real-time applications to
 establish balance between SMP performance, maintainability and flexibility.}
 
-\subsection{Mapping between articles and Research Questions}
-\rowcolors{1}{gray!40}{}
-\begin{tabular}{p{8cm} c c r}
-  \rowcolor[gray]{0.5}
-  {\bf Paper} & {\bf Research Questions} \\
-  Services everywhere: Osgi in distributed environments & RQ1.1 \\
-  Evaluating in scalability of distributed systems & RQ3 \\
-  Principles of modularity, regularity and hierarchy for scalable systems & RQ1, RQ3 \\
-  R-OSGi: Distributed applications through software modularization & RQ1, RQ1.1 \\
-  Software engineering for scalable distributed applications & RQ1, RQ2 \\
-  Towards a scalable design for command and control systems & RQ1, RQ3 \\
-  Towards Scalable and Adaptable Software Architectures & RQ1, RQ2 \\
-  A high-performance, portable implementation of the MPI message passing interface standard & RQ1, RQ1.1, PM-MPI \\
-  pyMPI - An introduction to parallel Python using MPI & RQ1, RQ1.1, PM-MPI \\
-  Parallel, distributed scripting with python & RQ1, RQ1.1, PM-MPI \\
-\rowcolor[gray]{0.5}
-\end{tabular}
-\rowcolors{1}{gray!0}{}
-\\{\small RQ{n} = which research question the paper answers,
- PM-MPI = papers related to Post Mortem }}
-
-\section{Main findings from Literature Review}
-
-\subsection{Literature Review Findings}
-
-van Steen, van der Zijden and Sips\cite{van1998software} defines a scalable
-system as a system that "should easily be able to accommodate higher
-performance levels", and argues that "systems should be scalable in the sense
-that they can easily be adapted to cooperate with future applications".  On the
-subject of the cost of scalability, they state that one important factor in
-scalable development "are the additional bounds that limit the increase of
-costs, and the degradation of performance, respectively", i.e. that if there
-are heavy constraints on development costs, scalability (in the form of
-performance) will suffer.  They also argue that one of the major problems with
-scalable development is that the solution as to how it is done depends heavily
-on the application itself.  They feel that constructing "general-purpose
-scalable solutions for replicating and distributing data and functionality,
-does not make much sense".
-\\
-
-Fayad, Hamza and Sanchez \cite{fayad2005towards} argues that there are several
-types of architectures one can use while developing a scalable system, most
-notably the ones they refer to as \emph{"Upward and Downward Scalability"}.
-They define upward scalability as "the capacity of handling increasing demands
-by adding new layers or functionalities" and downward scalability as "the
-ability of the architecture to adapt itself to a more constrained environment,
-by disabling certain functionalities".
-They define three core elements one should consider when trying to achieve
-upward scalability as being \emph{Increased capacity and speed}, \emph{Improved
-efficiency} and \emph{Reduced cost}. 
-
-They also suggest a number of techniques that can be used in order to address
-these elements: 
-\begin{itemize}
-\item{"To achieve \emph{Increased capacity and speed} one can use faster
-machines, create a machine cluster, and use appliance servers."} 
-\item{"To \emph{Improve efficiency} one can use appliance servers, segment the
-workload, batch requests, aggregate user data, manage connections, and cache
-data and requests."}  
-\item{"To \emph{Reduce costs} one can segment the workload and cache data and
-requests."}
-\end{itemize}
-
-However, they also make it clear that the validity of these techniques relies
-heavily on special hardware in order to guarantee scalability, and as such they
-only offer limited scalability. They proceed to state that "observations have led
-us to confirm that implementing full scalability is not an obvious task in software
-development, and especially with conventional approaches".
-Fayad et al. also talks about something called \emph{"Horizontal Scalability"},
-which "emphasizes the ability of the architecture to extend their boundaries by
-establishing connections with other software architectures in an efficient
-manner".  They further state that horizontal scalability can be achieved in two
-directions, referred to as \emph{Scaling Out} and \emph{Scaling In}, also
-called \emph{Extensibility} and \emph{Reduction}.  Extensibility is defined as
-the capacity of architectures to bind external architectures (called "leaves")
-to their structure, and by doing so "creating a synergy between these
-dissimilar architectures".  Reduction is defined as the process of unbinding
-those external architectures from the structure without causing harm.
-\\
-
-Häggander and Lundberg\cite{haggander1999guidelines} states 10 guidelines which
-they feel are relevant to consider when designing large real-time applications
-to successfully establish a balance between performance, maintainability and
-flexibility, all which are key elements in scalability. 
-
-They state the following guidelines:
-\begin{enumerate}
-\item{"Consider a multiprocessor when the supposed application design consists
-of many independent system instances."}
-\item{"Consider a multiprocessor when the supposed application design is based on
-third party systems which have shown themselves to scale-up well on 
-multiprocessors."}
-\item{"Reconsider using traditional performance optimization techniques instead
-of multiprocessors."}
-\item{"Consider multiple processes for high performance and scalability first."}
-\item{"Consider multithreaded programming in combination with multiple processes."}
-\item{"Avoid frequent allocations and de-allocations of dynamic memory."}
-\item{"Meet maintainability requirements with exchangeable components instead
- of extendable components."}
-\item{"Evaluate a heap implementation optimized for multiprocessors."}
-\item{"Utilize the stack memory if possible."}
-\item{"Consider multiple multithreaded processes for maximal maintainability, 
-flexibility and performance."}
-\end{enumerate}
-
-They do, however, emphasize that "it is not always possible to to maximize
-each quality attribute in a design, thereby making trade-offs necessary", and
-that one of the major challenges in software design is to find solutions that
-offers a good balance of these attributes.
-\\
-
-Caruso \cite{caruso1997toward} states that there are certain important things
-to consider when developing a scalable system that is to be capable of handling
-a wide range of load levels. He argues that the most important factor is "the
-concept of subdividing load into dynamically allocable, load-sharing fragments
-(subclients)", and that by doing this the system gains the ability to adjust to
-a wide range of different load/demand levels.
-He also mentions that one of the characteristics of a scalable system as being
-able to access existing data flows efficiently as well as creating new ones.
-\\
-
-Lipson \cite{lipson2007principles} argues that an important part of scalable
-systems is \emph{modularity}. He defines modularity as being the ability to
-take a part of a system which isn't dependant on any parts outside of itself,
-which then is a module. If one then has several such modules, they can be used
-as "building blocks" to create an application, where each module can be removed
-or exchanged independently.  He states that while there are several drawbacks
-to modularity, most notably non-optimal performance and reuse.  Non-optimal
-performance since a integrated system can be more efficient "as information,
-energy and materials can be passed directly within the system", and reuse since
- a module that fits in slot A might need to be adjusted to fit in slot B,
-which then might make it unusable in slot A. He argues, however, that
-modularity becomes justified in the long run thanks to the system becoming more
-adaptable.
-\\
-
-Amdahl \cite{amdahl1967validity} states (in what now is commonly referred to as
-"Amdahl's Law") that there is a limit to the speedup a program can gain from
-parallel processing (which is an important factor in scalability).  He means
-that there will always be a certain sequential overhead which cannot be
-parallelized, and thus cannot be made faster by using parallelization.
-\\
-
-Gropp, Lusk, Doss and Skjellum\cite{gropp1996high} discusses the design choices made when
-designing the MPI standard and their popular implementation MPICH. They
-compare the cross platform standard that MPI is towards vendor specific
-predecessor, and the performance penalty's the cross platform approach resulted
-in. But also why it was a good tradeoff since applications don't needs to be
-rewritten when switching between computer systems. While the api towards
-the user of MPI is the same everywhere MPICH still provides the ability to
-have platform specific code in MPI to speed up the execution time on different
-platforms. Already in 1996 when this article was written several vendors
-had contributed code to get MPICH to run faster on their hardware.
-\\
-
-Miller \cite{millerparallel}\cite{miller2002pympi} gives a hand on approach on
-how to write scalable application with python and MPI, he also argues that
-even if a program written in C may run faster, the counterpart in python will
-be much easier to write and maintain, and therefore in many case would be
-preferred. The performance in the python case could also be increased by
-writing computing heavy parts in C, or the python code could be used as a 
-prototype for the real application. Miller gives detailed yet easy to 
-understand explanation of the principle behind MPI and how to write a
-parallel application with it.
-\\
- 
-Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
-methods for evaluating the scalability of a system. They mean that a system is
-scalable "if it can be deployed effectively and economically over a range of
-different "sizes"". 
-
-They state four different cases where their proposed scalability analysis can
-be of use:
-\begin{itemize}
-\item{"To make a strategic choice of a scaling strategy, among several
-alternatives."}
-\item{"To tune the available scaling enablers for achieving the most
-cost-effective system configuration at any given scale."}
-\item{"To assess the need for providing more scaling enablers."}
-\item{"To assess the need to re-engineer the system, given the available choices
-for an expected evolution of the system."}
-\end{itemize}
-
-
-\section{Analysis and discussion}
-
-None of the findings are, as we see it, contradictive to one another, i.e. we
-have found no opposing results.  This indicates that there is somewhat of a
-consensus regarding as to what scalability is, what the advantages and
-disadvantages of it are, and how it is best achieved. As we see it, this is a
-good thing, since it gives us a clear picture of how to reach the goals of this
-paper, and saves us the trouble of having to match the opinions of different
-authors against one another to try to determine who's right and who's wrong.
-We feel confident that all our findings are valid and relevant to our research,
-and that we, with the help of these findings, will be able to answer our
-research questions and thus achieve our goal with this thesis.
-We also located a number of findings
-(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
-serves well as a reference in our post-mortem analysis, since they talk about
-scalability that is achieved using the same technology as we are using.
-\\
-
-If we analyze the findings from the literature review we find that there are a
-number of things one should do in order to achieve full scalability.  The
-system should be parallelized and, at least in a large-scale distributed
-system, somewhat modular. Parallelization should be done in order to segment
-the workload across several machines, which serves to both improve performance
-and generally increase system
-capacity\cite{fayad2005towards}\cite{haggander1999guidelines}\cite{caruso1997toward}.
-This can be done using technology such as
-MPI\cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel} or similar.
-
-This supports our own findings from developing and running a simple,
-parallelized password finder using MPI (section \ref{mpi}), which achieved
-significantly improved performance compared to a non-parallelized version of
-the application, with little difference in development time. The improved
-performance coupled with the relative ease of development suggests that
-parallelization is, if done right, a relatively low-cost, effective method for
-achieving scalability. However, it is important to mention that while the
-difference in development time cost between our applications (parallel and
-non-parallel) was insignificant, the difference will likely become larger in
-more complex system development.
-
-Modularity is a way of making the system more adaptable by building the system
-of several modules, i.e. small applications that does not have any external
-dependencies\cite{lipson2007principles}. By making a system adaptable by
-modularity it gains the possibility to remove certain, non-vital functions, or
-add new ones, without harming the system. This can, in theory, enable it to
-deploy on a wide range of platforms with relatively little modifications.
-Modularity usually comes at the expense of slightly lesser performance and less
-reuse, but for widely distributed systems it might very well prove worth it in
-the end. To make an entire system modular is close to impossible, since keeping
-modules independent from each other is often not doable, but some modularity
-(and the adaptability gained from it) can prove to be an asset in certain
-systems, but our findings suggest that it is not vital in order to achieve
-scalability.
-
-Our findings suggest that the cost for developing a scalable system varies a
-lot depending on the system. While development costs can be kept quite low if
-done right, there is also the question of hardware. In some of our findings the
-scalability issue is, in part, addressed by simply adding better
-hardware\cite{fayad2005towards}\cite{haggander1999guidelines}, thereby making
-the system able to handle larger loads. While the cost of hardware is often
-seen as insignificant compared to development costs, it is a cost nonetheless,
-and thus cannot be ignored.
-The cost of development is hard to measure, since, according to us, a system
-can never be \emph{too scalable}, and thus an effort to make a system as
-scalable as possible may go on for a very long time. However, it might not
-always be worthwhile to make a system scalable beyond a certain point. As our
-findings suggest, there is a limit to how scalable a system can actually
-become\cite{amdahl1967validity}, and so we feel that it is important to have a
-clear understanding, from the start, of how much effort should be put into
-making the system scalable. 
-
-\bibliographystyle{unsrt}
-\bibliography{reference}
 \end{document}
