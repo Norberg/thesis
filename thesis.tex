@@ -319,12 +319,15 @@ application.
 
 \subsubsection{Scalability}
 This table and diagram shows how much performance is increased for every
-new instance of MPI stared.
+new instance of MPI stared, compared to how well it should have performed
+if it had Perfect scalability\cite{jogalekar2000evaluating}. Perfect
+Scalability is when increasing the resourced the performance is increased
+just as much. 
 \begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
-  {\bf Instances} & {\bf python MPI (sec)} & {\bf Linear Scalability (sec)} \\
+  {\bf Instances} & {\bf python MPI (sec)} & {\bf Perfect Scalability (sec)} \\
   1 & 101,48 & 101,48 \\
   2 & 53,66  & 50,74  \\
   3 & 36,03  & 33,83  \\
@@ -353,8 +356,8 @@ major bottlenecks and it would be easy to increase the performance
 of the application by just adding more resources when its needed.
 
 \subsubsection{Scalable vs. Non Scalable Systems}
-This table and diagrams compare our scalable application towards an non
-scalable application
+This table and diagrams compare our scalable application towards the non
+scalable application we wrote for comparison.
 
 \begin{table}[h!]
 \rowcolors{1}{gray!40}{}
@@ -387,7 +390,13 @@ performance.}
 
 \subsubsection{Complexity}
 We have measured the complexity of both our parallel and non parallel
-application, and presents the results below.
+application, and presents the results below. One of the measurements
+we do is McCabe Complexity\cite{mccabe1976complexity} or better know as
+ Cyclomatic complexity. It tries to measure the complexity of the 
+application by measuring the number of independent paths through the
+code that could be taken in a program. A program with a lot of different
+possible paths is likely to be more complex than one with very few. The
+metric is however not perfect %TODO: why is it not perfect?
 
 \begin{table}[h!]
 \rowcolors{1}{gray!40}{}
@@ -398,8 +407,8 @@ application, and presents the results below.
   Block Depth   &   5  &   5  \\
   Blocks        &   9  &   9  \\
   Tokens        & 267  & 242  \\
-  McCabe Complexity\cite{mccabe1976complexity} \_\_main\_\_ & 2  & 2 \\
-  McCabe Complexity\cite{mccabe1976complexity} find\_password & 7  & 7  \\
+  McCabe Complexity \_\_main\_\_ & 2  & 2 \\
+  McCabe Complexity find\_password & 7  & 7  \\
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
@@ -484,6 +493,7 @@ following articles:
 
 
 \subsection{Mapping between articles and Research Questions}
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{p{8cm} c c r}
   \rowcolor[gray]{0.5}
@@ -504,8 +514,9 @@ following articles:
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\\{\small RQ{n} = which research question the paper answers,
- PM-MPI = papers related to Post Mortem }}
+\caption{RQ{n} = which research question the paper answers,
+ PM-MPI = papers related to Post Mortem }
+\end{table}
 
 \section{Literature Review Findings}
 
