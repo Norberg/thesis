@@ -95,12 +95,29 @@ software development cost \cite{fayad2005towards}.
 To promote scalability in a distributed setting one can use, for example, the
 \emph{Message Passing Interface (MPI)} which enables message passing between
 parallel programs running on computer clusters. MPI is
-an well tested and de facto standard for writing scalable software in any
-language and on any platform. MPI makes it easy to delegate work in an
-scalable and distributed environment and at the same time collect the results
-form different nodes. MPI also allows an arbitrary number of nodes in the 
-system with make it easy to add more resources when performance needs to
+an well tested and de facto\cite{wu2008using} standard for writing scalable
+software in any language and on any platform. MPI makes it easy to delegate
+work in an scalable and distributed environment and at the same time collect
+the results form different nodes. MPI also allows an arbitrary number of nodes
+in the system with make it easy to add more resources when performance needs to
 be improved. \cite{gropp1996high}
+\newline
+MPI works by distributing part of the computations to different instances that
+could be running on the same computer and on different cores or even completely
+different computer architectures connected over the Internet. MPI provides
+facilities to sending the results from this computations to other instances
+within MPI to be used as input for other computations or to be presented to the
+user. There exist several alternatives\cite{mpialternatives} to MPI, some of
+them being ARMIC, Sandia Portals and GASNet. Yet MPI is the de facto
+\cite{mpialternatives} standard for writing massively parallel applications. If
+you only wants to write parallel applications to take advantage of the local
+computer running several ordinary threads communication over an application
+specific method (often shared memory) is still very common \cite{getov1998high}
+even if libraries like MPI exist to make development much easier.
+
+We are going to use MPI in python utilizing the boost projects MPI bindings
+for python. These bindings allow us to use MPI in python even if the MPI library
+is written in another programming language, in this case C++.
  
 \subsection{Goals} 
 
@@ -152,7 +169,25 @@ We will study a classical and well tested approach to writing
 scalable distributed systems with MPI \cite{gropp1996high}. MPI have easy
 to use python bindings \cite{miller2002pympi} \cite{millerparallel} we will be
 using to write test programs that test the capabilities of MPI and compare the
-performance and cost to develop.
+performance and cost to develop compared to a ordinary non scalable application.
+
+\paragraph{Problem description}
+The problem we going to try to solve is from a hash of a user password try to
+bruteforce and find out what password was used to generate the hash.
+Since a hash is a one-way algorithm (or at least should be), we have to
+test every possible password and check if the hash matches the hashed user password
+if it matches we have probably\footnote{We could possible have found a
+collision in the algorithm, but the chance is minimal in a well tested algorithm
+like sha256 and in a relative small password range we're testing, only $\sim$
+40 million } found the same password as the user had.
+
+In the application without MPI we're going to do it by iterating over all words
+in a dictionary and hashing the one by one and trying to match it to the hash
+we tries to bruteforce.
+
+With MPI we will create several instances of MPI that each iterates over a part
+of the dictionary simultaneously.
+
 We will be measuring:
 \begin{itemize}
 \item Time to develop
@@ -172,7 +207,7 @@ when you starts to get used to MPI.}
  code and other more verbose but easier to read. But by letting the same
  programmers write both of the applications we hope to overcome that 
  difference.}
-\item{ \textbf{How} - Count number of lines with \emph{wc -l}}
+\item{ \textbf{How} - Count number of lines of code.}
 \end{itemize}
 \item How easy the code is to understand
 \begin{itemize}
@@ -255,14 +290,14 @@ Million words.
 
 \subsection{Measuring}
 Measuring was done by running the application 10 times for every number of
-instances between 1 and 10 and then calculating the mean time for each 
-number of instances. A non parallel program was also written and used to
-compare to our parallel application.
+instances. We then calculated the mean time for each number of instances. A non
+parallel program was also written and used to compare to our parallel
+application.
 
-\subsection{Scalability}
+\subsubsection{Scalability}
 This table and diagram shows how much performance is increased for every
 new instance of MPI stared.
-\begin{table}[h]
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
@@ -294,11 +329,11 @@ resources to the system. This shows that our application don't have any
 major bottlenecks and it would be easy to increase the performance
 of the application by just adding more resources when its needed.
 
-\subsection{Scalable vs. Non Scalable Systems}
+\subsubsection{Scalable vs. Non Scalable Systems}
 This table and diagrams compare our scalable application towards an non
 scalable application
 
-\begin{table}
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
@@ -318,20 +353,20 @@ scalable application
 \rowcolors{1}{gray!0}{}
 \end{table}
 \begin{figure}[h!]
+\includegraphics[width=\textwidth]{img/parallel-vs-non-parallel.png}
 \center
 \caption{From this we can see that we have a small performance loss (5\%) due the usage
 of MPI but if we have more than one core to run on we get drastically better
 performance.}
-\includegraphics[width=\textwidth]{img/parallel-vs-non-parallel.png}
 \end{figure}
 
 
 
-\subsection{Complexity}
+\subsubsection{Complexity}
 We have measured the complexity of both our parallel and non parallel
 application, and presents the results below.
 
-\begin{table}
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
   \rowcolor[gray]{0.5}
@@ -365,7 +400,7 @@ of the different applications.
 \paragraph{Non Parallel version of the application}
 {\small\input{code/bruteforce_noparallel.tex}}
 
-\subsection{Time}
+\subsubsection{Time}
 \begin{table}[!h]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
@@ -379,7 +414,7 @@ of the different applications.
 \caption{ These times don't include time spent on prestudy, but rather the time
 it takes for someone with at least basic understanding of python and MPI. The
 pre study for MPI took about 1-2 hours for someone without previous experience
-to MPI}
+to MPI.}
 \end{table}
 
 We can see that in with this type of applications MPI don't require any extra
