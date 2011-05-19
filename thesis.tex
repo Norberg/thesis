@@ -27,8 +27,6 @@ intelligent that survives. It is the one that is the most adaptable to change.}
 \end{flushright}
 
 \newpage
-\tableofcontents
-\newpage
  
 %\begin{abstract}
 %TODO
@@ -59,6 +57,31 @@ others has to say on the subject, and a post-mortem analysis, where we try to
 estimate the benefits and costs of scalability by developing a scalable system
 of our own.
 
+\subsection{Overview}
+
+The "Background" section outlines the concept of scalability, as well as some
+related background concepts.
+
+The "Research Questions" section defines our research questions, i.e. the
+questions we aim to answer in this thesis.
+
+The "Research Methodology" section outlines and explains the methodologies we
+have used to conduct our research, which are literature review and post mortem
+analysis.
+
+The "Post mortem results" section presents the data gathered from our post
+mortem analysis.
+
+The "Literature review results" section presents the design of our literature
+review, as well as the articles found and selected during our literature
+review.
+
+The "Literature Review Findings" section presents our findings from the
+literature review.  
+
+In the "Analysis and Discussion" section we discuss our
+findings.
+
 \subsection{Background}
 
 In this section we explain the concept of scalability, as well as some general
@@ -71,21 +94,21 @@ large \cite{jogalekar2000evaluating}. The scalability of a system depends on
 how well it can exploit functional modularity, structural regularity and
 hierarchy \cite{lipson2007principles}.
 
-\emph{Distributed Computing}, perhaps more known as \emph{Cloud Computing}, is becoming a
-more and more common approach to software development. The basic concept of
-distributed computing is to make different services available in the so called
-'cloud', which means that these services are reachable from anywhere one has
-internet access. These services can, for example, be things like e-mail,
-document editing, social networks and much more. The fact that these services
-are so widely distributed places high demands on the number of users that can
-be supported. These demands can be accommodated by simply making sure the
-systems have a large amount of resources from the start, or adding resources
-from time to time. However, if there's less users on the system than it has
-capacity for, this approach quickly becomes expensive due to a lot of unused
-resources. This problem can be solved by making the system scalable, i.e. that
-it uses resources in proportion to the number of current users. If the user
-base drops, it will use less resources, and when more people are using the
-system it will use more. By making a system scalable, one makes it able to
+\emph{Distributed Computing}, perhaps more known as \emph{Cloud Computing}, is
+becoming a more and more common approach to software development. The basic
+concept of distributed computing is to make different services available in the
+so called 'cloud', which means that these services are reachable from anywhere
+one has internet access. These services can, for example, be things like
+e-mail, document editing, social networks and much more. The fact that these
+services are so widely distributed places high demands on the number of users
+that can be supported. These demands can be accommodated by simply making sure
+the systems have a large amount of resources from the start, or adding
+resources from time to time. However, if there's less users on the system than
+it has capacity for, this approach quickly becomes expensive due to a lot of
+unused resources. This problem can be solved by making the system scalable,
+i.e. that it uses resources in proportion to the number of current users. If
+the user base drops, it will use less resources, and when more people are using
+the system it will use more. By making a system scalable, one makes it able to
 adapt to changing conditions and environments, which is important since a
 system is generally developed to run over a relatively large period of time,
 during which a lot of things may rapidly change \cite{van1998software}
@@ -144,9 +167,9 @@ high-grade scalability? Not all technologies etc. support a high level of
 scalability, and knowing the difference between the ones who do and the ones
 who do not can save a lot of expenses.}
 
-\item{RQ2: Which extra costs do the development of scalable systems lead to?} 
-\item{RQ2.1: When done in advance?} 
-\item{RQ2.2: When done after the initial development?} 
+\item{RQ2: Which extra costs do the development of scalable systems lead to?
+How much does it cost when doing it in advance, and how much does it cost when
+doing it after the initial development?} 
 
 \item{RQ3: Which kind of systems can benefit from having high-grade scalability?
 It is important to know if a certain system actually benefits from being highly
@@ -423,7 +446,35 @@ But on applications that isn't as easy to parallelize the difference may be
 significant to MPI's disadvantage.
 
  
-\section{Literature study results}
+\section{Literature review results}
+
+\subsection{Literature review design}
+
+We will be searching for literature for our review mainly on Google Scholar and
+on BTH's article database Elin. The keywords we will be using while searching 
+will be focused on terms related to distributed systems and scalability.
+
+The research started with the keywords scalable and distributed systems,
+from there we read article that looked promising first by just looking on
+the topic and if it looked relevant for our thesis, we took a closer look
+at the abstract. After reading the abstract we made a decision if the paper
+was in the scope of our project and if it was that we selected it. And used
+terminology found in that paper to find further papers on which the same 
+process was used. 
+\newline
+
+List of keywords:
+\begin{itemize}
+\item{scalable systems (Google Scholar)}
+\item{python parallel (Google Scholar)}
+\item{mpi (Google Scholar)}
+\item{Distributed systems AND scalable design (ELIN)}
+\item{Distributed environments services osgi (ELIN)}
+\item{Scalable distribution AND software (ELIN)}
+\item{Scalable development AND cost (ELIN)}
+\item{Scalability AND distributed systems (ELIN)}
+\item{Distributed Applications AND Software Modularization (ELIN)}
+\end{itemize}
 
 \subsection{Initial search results}
 When we applied our search strings for the literature study we found the
@@ -456,39 +507,9 @@ following articles:
 \\{\small RQ{n} = which research question the paper answers,
  PM-MPI = papers related to Post Mortem }}
 
-\section{Literature Review results}
+\section{Literature Review Findings}
 
-\subsection{Literature review design}
-
-We will be searching for literature for our review mainly on Google Scholar and
-on BTH's article database Elin. The keywords we will be using while searching 
-will be focused on terms related to distributed systems and scalability.
-
-The research started with the keywords scalable and distributed systems,
-from there we read article that looked promising first by just looking on
-the topic and if it looked relevant for our thesis, we took a closer look
-at the abstract. After reading the abstract we made a decision if the paper
-was in the scope of our project and if it was that we selected it. And used
-terminology found in that paper to find further papers on which the same 
-process was used. 
-\newline
-
-List of keywords:
-\begin{itemize}
-\item{scalable systems (Google Scholar)}
-\item{python parallel (Google Scholar)}
-\item{mpi (Google Scholar)}
-\item{Distributed systems AND scalable design (ELIN)}
-\item{Distributed environments services osgi (ELIN)}
-\item{Scalable distribution AND software (ELIN)}
-\item{Scalable development AND cost (ELIN)}
-\item{Scalability AND distributed systems (ELIN)}
-\item{Distributed Applications AND Software Modularization (ELIN)}
-\end{itemize}
-
-\subsection{Literature Review Findings}
-
-\subsubsection{Summary of findings}
+\subsection{Summary of findings}
 
 None of the findings are, as we see it, contradictive to one another, i.e. we
 have found no opposing results.  This indicates that there is somewhat of a
@@ -505,9 +526,19 @@ We also located a number of findings
 serves well as a reference in our post-mortem analysis, since they talk about
 scalability that is achieved using the same technology as we are using.
 
-\subsubsection{Findings}
+\subsection{Findings}
 
-\textbf{Research Question 1 and 2:}
+\textbf{Research Question 1 and 2}
+
+{\scriptsize \emph{Research Question 1: How do one successfully develop a
+scalable distributed system? Which factors needs to be considered, and how does
+one achieve these? Without knowing what needs to be done, developing a
+high-grade scalable system may be difficult, and cost a lot of extra time.}}
+
+{\scriptsize \emph{Research Question 2: Which extra costs do the development of
+scalable systems lead to? How much does it cost when doing it in advance, and
+how much does it cost when doing it after the initial development?}}
+\\
 
 van Steen, van der Zijden and Sips\cite{van1998software} defines a scalable
 system as a system that "should easily be able to accommodate higher
@@ -595,7 +626,17 @@ that one of the major challenges in software design is to find solutions that
 offers a good balance of these attributes.
 \\
 
-\textbf{Research Question 1 and 3:}
+\noindent\textbf{Research Question 1 and 3}
+{\scriptsize \emph{Research Question 1: How do one successfully develop a
+scalable distributed system? Which factors needs to be considered, and how does
+one achieve these? Without knowing what needs to be done, developing a
+high-grade scalable system may be difficult, and cost a lot of extra time.}}
+
+{\scriptsize \emph{Research Question 3: Which kind of systems can benefit from
+having a high-grade scalability? It is important to know if a certain system
+actually benefits from being highly scalable, and if so, how much. If the
+benefits are relatively small, there might be cheaper ways of developing it.}}
+\\
 
 Caruso \cite{caruso1997toward} states that there are certain important things
 to consider when developing a scalable system that is to be capable of handling
@@ -629,26 +670,12 @@ that there will always be a certain sequential overhead which cannot be
 parallelized, and thus cannot be made faster by using parallelization.
 \\
 
-\textbf{Research Question 3:}
-
-Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
-methods for evaluating the scalability of a system. They mean that a system is
-scalable "if it can be deployed effectively and economically over a range of
-different "sizes"". 
-
-They state four different cases where their proposed scalability analysis can
-be of use:
-\begin{itemize}
-\item{"To make a strategic choice of a scaling strategy, among several
-alternatives."}
-\item{"To tune the available scaling enablers for achieving the most
-cost-effective system configuration at any given scale."}
-\item{"To assess the need for providing more scaling enablers."}
-\item{"To assess the need to re-engineer the system, given the available choices
-for an expected evolution of the system."}
-\end{itemize}
-
-\textbf{Research Question 1.1:}
+\noindent\textbf{Research Question 1.1}
+{\scriptsize \emph{Research Question 1.1: Which technologies, libraries and
+software can one use to achieve high-grade scalability? Not all technologies
+etc. support a high level of scalability, and knowing the difference between
+the ones who do and the ones who do not can save a lot of expenses.}}
+\\
 
 Gropp, Lusk, Doss and Skjellum\cite{gropp1996high} discusses the design choices made when
 designing the MPI standard and their popular implementation MPICH. They
@@ -671,6 +698,32 @@ writing computing heavy parts in C, or the python code could be used as a
 prototype for the real application. Miller gives detailed yet easy to 
 understand explanation of the principle behind MPI and how to write a
 parallel application with it.
+\\
+
+\noindent\textbf{Research Question 3}
+{\scriptsize \emph{Research Question 3: Which kind of systems can benefit from
+having a high-grade scalability? It is important to know if a certain system
+actually benefits from being highly scalable, and if so, how much. If the
+benefits are relatively small, there might be cheaper ways of developing it.}}
+\\
+
+Jogalekar and Woodside \cite{jogalekar2000evaluating} propose a number of
+methods for evaluating the scalability of a system. They mean that a system is
+scalable "if it can be deployed effectively and economically over a range of
+different "sizes"". 
+
+They state four different cases where their proposed scalability analysis can
+be of use:
+\begin{itemize}
+\item{"To make a strategic choice of a scaling strategy, among several
+alternatives."}
+\item{"To tune the available scaling enablers for achieving the most
+cost-effective system configuration at any given scale."}
+\item{"To assess the need for providing more scaling enablers."}
+\item{"To assess the need to re-engineer the system, given the available choices
+for an expected evolution of the system."}
+\end{itemize}
+
 
 \section{Analysis and discussion}
 
