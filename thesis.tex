@@ -118,12 +118,29 @@ software development cost \cite{fayad2005towards}.
 To promote scalability in a distributed setting one can use, for example, the
 \emph{Message Passing Interface (MPI)} which enables message passing between
 parallel programs running on computer clusters. MPI is
-an well tested and de facto standard for writing scalable software in any
-language and on any platform. MPI makes it easy to delegate work in an
-scalable and distributed environment and at the same time collect the results
-form different nodes. MPI also allows an arbitrary number of nodes in the 
-system with make it easy to add more resources when performance needs to
+an well tested and de facto\cite{wu2008using} standard for writing scalable
+software in any language and on any platform. MPI makes it easy to delegate
+work in an scalable and distributed environment and at the same time collect
+the results form different nodes. MPI also allows an arbitrary number of nodes
+in the system with make it easy to add more resources when performance needs to
 be improved. \cite{gropp1996high}
+\newline
+MPI works by distributing part of the computations to different instances that
+could be running on the same computer and on different cores or even completely
+different computer architectures connected over the Internet. MPI provides
+facilities to sending the results from this computations to other instances
+within MPI to be used as input for other computations or to be presented to the
+user. There exist several alternatives\cite{mpialternatives} to MPI, some of
+them being ARMIC, Sandia Portals and GASNet. Yet MPI is the de facto
+\cite{mpialternatives} standard for writing massively parallel applications. If
+you only wants to write parallel applications to take advantage of the local
+computer running several ordinary threads communication over an application
+specific method (often shared memory) is still very common \cite{getov1998high}
+even if libraries like MPI exist to make development much easier.
+
+We are going to use MPI in python utilizing the boost projects MPI bindings
+for python. These bindings allow us to use MPI in python even if the MPI library
+is written in another programming language, in this case C++.
  
 \subsection{Goals} 
 
@@ -175,7 +192,25 @@ We will study a classical and well tested approach to writing
 scalable distributed systems with MPI \cite{gropp1996high}. MPI have easy
 to use python bindings \cite{miller2002pympi} \cite{millerparallel} we will be
 using to write test programs that test the capabilities of MPI and compare the
-performance and cost to develop.
+performance and cost to develop compared to a ordinary non scalable application.
+
+\paragraph{Problem description}
+The problem we going to try to solve is from a hash of a user password try to
+bruteforce and find out what password was used to generate the hash.
+Since a hash is a one-way algorithm (or at least should be), we have to
+test every possible password and check if the hash matches the hashed user password
+if it matches we have probably\footnote{We could possible have found a
+collision in the algorithm, but the chance is minimal in a well tested algorithm
+like sha256 and in a relative small password range we're testing, only $\sim$
+40 million } found the same password as the user had.
+
+In the application without MPI we're going to do it by iterating over all words
+in a dictionary and hashing the one by one and trying to match it to the hash
+we tries to bruteforce.
+
+With MPI we will create several instances of MPI that each iterates over a part
+of the dictionary simultaneously.
+
 We will be measuring:
 \begin{itemize}
 \item Time to develop
@@ -195,7 +230,7 @@ when you starts to get used to MPI.}
  code and other more verbose but easier to read. But by letting the same
  programmers write both of the applications we hope to overcome that 
  difference.}
-\item{ \textbf{How} - Count number of lines with \emph{wc -l}}
+\item{ \textbf{How} - Count number of lines of code.}
 \end{itemize}
 \item How easy the code is to understand
 \begin{itemize}
@@ -278,18 +313,21 @@ Million words.
 
 \subsection{Measuring}
 Measuring was done by running the application 10 times for every number of
-instances between 1 and 10 and then calculating the mean time for each 
-number of instances. A non parallel program was also written and used to
-compare to our parallel application.
+instances. We then calculated the mean time for each number of instances. A non
+parallel program was also written and used to compare to our parallel
+application.
 
-\subsection{Scalability}
+\subsubsection{Scalability}
 This table and diagram shows how much performance is increased for every
-new instance of MPI stared.
-\begin{table}[h]
+new instance of MPI stared, compared to how well it should have performed
+if it had Perfect scalability\cite{jogalekar2000evaluating}. Perfect
+Scalability is when increasing the resources the performance is increased
+just as much. 
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
-  {\bf Instances} & {\bf python MPI (sec)} & {\bf Linear Scalability (sec)} \\
+  {\bf Instances} & {\bf python MPI (sec)} & {\bf Perfect Scalability (sec)} \\
   1 & 101,48 & 101,48 \\
   2 & 53,66  & 50,74  \\
   3 & 36,03  & 33,83  \\
@@ -306,6 +344,7 @@ new instance of MPI stared.
 \end{table}
 \begin{figure}[h!]
 \center
+
 \includegraphics[width=\textwidth]{img/scalabilty-pympi.png}
 \caption{Total number of cores in the system was 4, so performance stopped
 increasing when adding more instances than 4. }
@@ -316,10 +355,11 @@ resources to the system. This shows that our application don't have any
 major bottlenecks and it would be easy to increase the performance
 of the application by just adding more resources when its needed.
 
-\subsection{Scalable vs. Non Scalable Systems}
-This table and diagrams compare our scalable application towards an non
-scalable application
+\subsubsection{Scalable vs. Non Scalable Systems}
+This table and diagrams compare our scalable application towards the non
+scalable application we wrote for comparison.
 
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
@@ -337,18 +377,31 @@ scalable application
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\newline
+\end{table}
+\begin{figure}[h!]
 \includegraphics[width=\textwidth]{img/parallel-vs-non-parallel.png}
-
-From this we can see that we have a small performance loss (5\%) due the usage
+\center
+\caption{From this we can see that we have a small performance loss (5\%) due the usage
 of MPI but if we have more than one core to run on we get drastically better
-performance.
+performance.}
+\end{figure}
 
 
-\subsection{Complexity}
+
+\subsubsection{Complexity}
 We have measured the complexity of both our parallel and non parallel
-application, and presents the results below.
+application, and presents the results below. One of the measurements
+we do is McCabe Complexity\cite{mccabe1976complexity} or better know as
+Cyclomatic complexity. It tries to measure the complexity of the 
+application by measuring the number of independent paths through the
+code that could be taken in a program. A program with a lot of different
+possible paths is likely to be more complex than one with very few. The
+metric is however not perfect since it don't reflect anything else, e.g.  a
+program written on one row with cryptic variable names may have the same
+Cyclomatic complexity as a program structured in a more human readable way
+over several lines with descriptive variable names.
 
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
   \rowcolor[gray]{0.5}
@@ -357,13 +410,13 @@ application, and presents the results below.
   Block Depth   &   5  &   5  \\
   Blocks        &   9  &   9  \\
   Tokens        & 267  & 242  \\
-  McCabe Complexity\cite{mccabe1976complexity} \_\_main\_\_ & 2  & 2 \\
-  McCabe Complexity\cite{mccabe1976complexity} find\_password & 7  & 7  \\
+  McCabe Complexity \_\_main\_\_ & 2  & 2 \\
+  McCabe Complexity find\_password & 7  & 7  \\
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\\{\small Measurements done with pyMetrics\cite{pymetrics}}
-\newline
+\caption{ Measurements done with pyMetrics\cite{pymetrics}}
+\end{table}
 From these measurements we can see that the differences is minimal and
 McCabe Complexity\cite{mccabe1976complexity} don't differ at all between
 the applications. We also made a small survey in our project of 6 persons
@@ -376,13 +429,20 @@ Below we show how the code looks to allow the reader to compare the readability
 of the different applications. 
 
 \paragraph{Common part of the application}
-\input{code/common.tex}
+{\small\input{code/common.tex}}
 \paragraph{Parallel version of the application}
-\input{code/bruteforce.tex}
+{\small\input{code/bruteforce.tex}}
 \paragraph{Non Parallel version of the application}
-\input{code/bruteforce_noparallel.tex}
+{\small\input{code/bruteforce_noparallel.tex}}
 
-\subsection{Time}
+\subsubsection{Time}
+Below we present how much time was spent on developing the different
+application in a 5 minutes resolution. "Time to develop" was the time spent on
+the initial application that hashed 3.6 million words from a word list. "Time
+to extend" is the time it took to extend the application to also test every
+word with a digit at the end.
+
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
   \rowcolor[gray]{0.5}
@@ -392,10 +452,11 @@ of the different applications.
 \rowcolor[gray]{0.5}
 \end{tabular}
 \rowcolors{1}{gray!0}{}
-\\{\small These times don't include time spent on prestudy, but rather the time
+\caption{ These times don't include time spent on prestudy, but rather the time
 it takes for someone with at least basic understanding of python and MPI. The
 pre study for MPI took about 1-2 hours for someone without previous experience
-to MPI}
+to MPI.}
+\end{table}
 
 We can see that in with this type of applications MPI don't require any extra
 effort from the programmer if he or she have some previous knowledge about MPI.
@@ -439,31 +500,6 @@ following articles:
 
 (See list of references)
 
-
-\subsection{Mapping between articles and Research Questions}
-\rowcolors{1}{gray!40}{}
-\begin{tabular}{p{8cm} c c r}
-  \rowcolor[gray]{0.5}
-  {\bf Paper} & {\bf Research Questions} \\
-  Services everywhere: Osgi in distributed environments & RQ1.1 \\
-  Evaluating in scalability of distributed systems & RQ3 \\
-  Principles of modularity, regularity and hierarchy for scalable systems & RQ1, RQ3 \\
-  R-OSGi: Distributed applications through software modularization & RQ1, RQ1.1 \\
-  Software engineering for scalable distributed applications & RQ1, RQ2 \\
-  Towards a scalable design for command and control systems & RQ1, RQ3 \\
-  Towards Scalable and Adaptable Software Architectures & RQ1, RQ2 \\
-  A high-performance, portable implementation of the MPI message passing interface standard & RQ1, RQ1.1, PM-MPI \\
-  pyMPI - An introduction to parallel Python using MPI & RQ1, RQ1.1, PM-MPI \\
-  Parallel, distributed scripting with python & RQ1, RQ1.1, PM-MPI \\
-  Validity of the single processor approach to achieving large scale computing capabilities & RQ3 \\
-  Ten Performance Guidelines for Balancing Software Quality Attributes when Developing Large Real-time Applications for Multiprocessors & RQ1, RQ2, RQ3 \\
-  
-\rowcolor[gray]{0.5}
-\end{tabular}
-\rowcolors{1}{gray!0}{}
-\\{\small RQ{n} = which research question the paper answers,
- PM-MPI = papers related to Post Mortem }}
-
 \section{Literature Review Findings}
 
 \subsection{Summary of findings}
@@ -484,6 +520,34 @@ serves well as a reference in our post-mortem analysis, since they talk about
 scalability that is achieved using the same technology as we are using.
 
 \subsection{Findings}
+
+\subsection{Mapping between articles and Research Questions}
+This is a table 
+
+\begin{table}[h!]
+\rowcolors{1}{gray!40}{}
+\begin{tabular}{p{8cm} c c r}
+  \rowcolor[gray]{0.5}
+  {\bf Paper} & {\bf Research Questions} \\
+  Services everywhere: Osgi in distributed environments & RQ1.1 \\
+  Evaluating in scalability of distributed systems & RQ3 \\
+  Principles of modularity, regularity and hierarchy for scalable systems & RQ1, RQ3 \\
+  R-OSGi: Distributed applications through software modularization & RQ1, RQ1.1 \\
+  Software engineering for scalable distributed applications & RQ1, RQ2 \\
+  Towards a scalable design for command and control systems & RQ1, RQ3 \\
+  Towards Scalable and Adaptable Software Architectures & RQ1, RQ2 \\
+  A high-performance, portable implementation of the MPI message passing interface standard & RQ1, RQ1.1, PM-MPI \\
+  pyMPI - An introduction to parallel Python using MPI & RQ1, RQ1.1, PM-MPI \\
+  Parallel, distributed scripting with python & RQ1, RQ1.1, PM-MPI \\
+  Validity of the single processor approach to achieving large scale computing capabilities & RQ3 \\
+  Ten Performance Guidelines for Balancing Software Quality Attributes when Developing Large Real-time Applications for Multiprocessors & RQ1, RQ2, RQ3 \\
+  
+\rowcolor[gray]{0.5}
+\end{tabular}
+\rowcolors{1}{gray!0}{}
+\caption{RQ{n} = which research question the paper answers,
+ PM-MPI = papers related to Post Mortem }
+\end{table}
 
 \textbf{Research Question 1 and 2}
 
