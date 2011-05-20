@@ -50,7 +50,7 @@ important since not all systems benefit from being scalable, and thus the
 eventual extra costs may not be justified. On the other hand, if a system would
 benefit from being scalable, but is not, developers might risk loosing a lot in
 the long run. We are looking to solve this problem by proposing a few pointers
-of things we find to be important to consider, both when trying to determine
+on things we find to be important to consider, both when trying to determine
 however one should develop scalable or not, and if so, how it can be done. We
 will be researching this by doing a literature review, where we analyze what
 others has to say on the subject, and a post-mortem analysis, where we try to
@@ -79,8 +79,10 @@ review.
 The "Literature Review Findings" section presents our findings from the
 literature review.  
 
-In the "Analysis and Discussion" section we discuss our
-findings.
+In the "Analysis and Discussion" section we discuss our findings, both from the
+literature review and from the post mortem analysis.
+
+In the "Conclusion" section we present the conclusions of our research. 
 
 \subsection{Background}
 
@@ -133,9 +135,9 @@ within MPI to be used as input for other computations or to be presented to the
 user. There exist several alternatives\cite{mpialternatives} to MPI, some of
 them being ARMIC, Sandia Portals and GASNet. Yet MPI is the de facto
 \cite{mpialternatives} standard for writing massively parallel applications. If
-you only wants to write parallel applications to take advantage of the local
-computer running several ordinary threads communication over an application
-specific method (often shared memory) is still very common \cite{getov1998high}
+you only want to write parallel applications to take advantage of the local
+computer, running several ordinary threads communicating over an application
+specific method (often shared memory) is still very common \cite{getov1998high},
 even if libraries like MPI exist to make development much easier.
 
 We are going to use MPI in python utilizing the boost projects MPI bindings
@@ -147,7 +149,7 @@ is written in another programming language, in this case C++.
 What we intend to investigate is what needs to be considered
 when developing a scalable distributed system, and to what cost these features
 comes at. We believe that while the cost of these features may initially be
-higher, the cost of maintainability is lower. We hope that the outcome of our
+higher, the cost of maintenance is lower. We hope that the outcome of our
 research will be useful for people trying to determine whether or not to strive
 towards implementing a scalable distributed system from the start, rather than
 incrementally increasing system capacity during the system's lifetime.
@@ -190,23 +192,25 @@ research.
 \subsubsection{MPI}
 We will study a classical and well tested approach to writing
 scalable distributed systems with MPI \cite{gropp1996high}. MPI have easy
-to use python bindings \cite{miller2002pympi} \cite{millerparallel} we will be
-using to write test programs that test the capabilities of MPI and compare the
-performance and cost to develop compared to a ordinary non scalable application.
+to use python bindings \cite{miller2002pympi} \cite{millerparallel}, which we
+will be using to write test programs that test the capabilities of MPI, and
+compare the performance and cost to develop compared to a ordinary non scalable
+application.
 
 \paragraph{Problem description}
 The problem we going to try to solve is from a hash of a user password try to
-bruteforce and find out what password was used to generate the hash.
-Since a hash is a one-way algorithm (or at least should be), we have to
-test every possible password and check if the hash matches the hashed user password
+bruteforce (testing all possible combinations of letters and numbers to match a
+password) and find out what password was used to generate the hash.  Since a
+hash is a one-way algorithm (or at least should be), we have to test every
+possible password and check if the hash matches the hashed user password, and
 if it matches we have probably\footnote{We could possible have found a
-collision in the algorithm, but the chance is minimal in a well tested algorithm
-like sha256 and in a relative small password range we're testing, only $\sim$
-40 million } found the same password as the user had.
+collision in the algorithm, but the chance is minimal in a well tested
+algorithm like sha256 and in a relative small password range we're testing,
+only $\sim$ 40 million } found the same password as the user had.
 
 In the application without MPI we're going to do it by iterating over all words
-in a dictionary and hashing the one by one and trying to match it to the hash
-we tries to bruteforce.
+in a dictionary, hashing them one by one, attempting to match it to the hash
+we are trying to bruteforce.
 
 With MPI we will create several instances of MPI that each iterates over a part
 of the dictionary simultaneously.
@@ -218,9 +222,7 @@ We will be measuring:
 \item{ \textbf{Why} - If we know how much time it takes to develop a scalable application with
 MPI we can measure the cost of developing the scalable application. Which is needed to
 know in which cases it may be cost efficient.}
-\item{ \textbf{How} - By keeping track of spent time for writing the software, 
-and also by doing it more than one time we can see how much time is saved
-when you starts to get used to MPI.}
+\item{ \textbf{How} - By keeping track of spent time for writing the software.}
 \end{itemize}
 \item Lines of code
 \begin{itemize}
@@ -246,11 +248,11 @@ needs to be extended further on with MPI.}
 \item{ \textbf{How} - Measure how much work it takes to extend the application with 
 		some example feature}
 \end{itemize}
-\item Performance - How fast do the application run
+\item Performance - How fast does the application run
 \begin{itemize}
 \item{ \textbf{Why} - Because one of the main reason for scalability is to increase the
  performance we want to know how much we are able to increase it by using MPI. }
-\item{ \textbf{How} - Measure the time to run the program with \emph{time}}
+\item{ \textbf{How} - Measure the time to run the program with \emph{time}} (a UNIX command)
 \end{itemize}
 \item Scalability - how well do it scale when adding more resources
 \begin{itemize}
@@ -258,7 +260,7 @@ needs to be extended further on with MPI.}
  so when doubling the resources the performance also doubles. This is probably 
  not the case, but we want to know how much performance gain we get by adding
  more resources to the system. }
-\item{ \textbf{How} - Adding more resource to the system and then measure performance
+\item{ \textbf{How} - Adding more resources to the system and then measuring performance
  again}
 \end{itemize}
 \item Performance when using only one node, e.g. overhead for MPI
@@ -275,14 +277,14 @@ don't have a high usage yet and maybe never will.}
 
 \section{Post mortem results}\label{mpi}
 \subsection{Pre study}
-We started by look at the different MPI bindings provided for python, the result
-was overwhelming and we found several different bindings providing the same
-functionality. After some research we chose to use boost-mpi python bindings
-\cite{boost-mpi}. These bindings looked well maintained and had a proper
-debian package and had example code that worked out of the box, as opposed to
-the other bindings we tested. The problem was probably that it existed more
-than one library with the exact same name but was used differently and it was
-hard to know what library different examples was supposed to work with. 
+When we started by look at the different MPI bindings provided for python, the
+results were overwhelming and we found several different bindings providing the
+same functionality. After some research we chose to use boost-mpi python
+bindings \cite{boost-mpi}. These bindings looked well maintained, had a proper
+debian package, and had example code that worked out of the box, as opposed to
+the other bindings we tested. The only problem was that it existed more than
+one library with the exact same name but was used differently and it was hard
+to know what library different examples was supposed to work with. 
 
 \subsection{Problem}
 Before we could write a scalable application we had to choose what problem we
@@ -293,9 +295,9 @@ very easy to split up in several parts and doing them parallel.
 
 \subsection{Solution}
 The solutions works by iterating over a dictionary of $\sim$3.6 Million words
-and test if the word matches the supplied hash and also check if word followed
-by a digit match. The reason that we also check the word followed by a digit
-is to increase the load on the system due to the execution time being to 
+and test if the word matches the supplied hash and also check if a word is
+followed by a digit match. The reason that we also check the word followed by a
+digit is to increase the load on the system due to the execution time being to
 low to reliable measure and reproduce the data when only hashing $\sim$3.6
 Million words.
 
@@ -321,7 +323,7 @@ application.
 This table and diagram shows how much performance is increased for every
 new instance of MPI stared, compared to how well it should have performed
 if it had Perfect scalability\cite{jogalekar2000evaluating}. Perfect
-Scalability is when increasing the resources the performance is increased
+Scalability is when you increase the resources, the performance is increased
 just as much. 
 \begin{table}[h!]
 \rowcolors{1}{gray!40}{}
@@ -352,8 +354,8 @@ increasing when adding more instances than 4. }
 
 We can see that the performance almost increase linear when adding more
 resources to the system. This shows that our application don't have any
-major bottlenecks and it would be easy to increase the performance
-of the application by just adding more resources when its needed.
+major bottlenecks, and it would be easy to increase the performance
+of the application by just adding more resources when needed.
 
 \subsubsection{Scalable vs. Non Scalable Systems}
 This table and diagrams compare our scalable application towards the non
@@ -437,7 +439,7 @@ of the different applications.
 
 \subsubsection{Time}
 Below we present how much time was spent on developing the different
-application in a 5 minutes resolution. "Time to develop" was the time spent on
+applications in a 5 minute resolution. "Time to develop" was the time spent on
 the initial application that hashed 3.6 million words from a word list. "Time
 to extend" is the time it took to extend the application to also test every
 word with a digit at the end.
@@ -458,10 +460,10 @@ pre study for MPI took about 1-2 hours for someone without previous experience
 to MPI.}
 \end{table}
 
-We can see that in with this type of applications MPI don't require any extra
-effort from the programmer if he or she have some previous knowledge about MPI.
-But on applications that isn't as easy to parallelize the difference may be 
-significant to MPI's disadvantage.
+We can see that using MPI in this type of applications does not require any
+extra effort from the programmer, if he or she has some previous knowledge
+about MPI.  But in applications that isn't as easy to parallelize the
+difference may be significant to MPI's disadvantage.
 
  
 \section{Literature review results}
@@ -493,12 +495,6 @@ List of keywords:
 \item{Scalability AND distributed systems (ELIN)}
 \item{Distributed Applications AND Software Modularization (ELIN)}
 \end{itemize}
-
-\subsection{Initial search results}
-When we applied our search strings for the literature study we found the
-following articles:
-
-(See list of references)
 
 \section{Literature Review Findings}
 
