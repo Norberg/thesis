@@ -321,7 +321,7 @@ application.
 This table and diagram shows how much performance is increased for every
 new instance of MPI stared, compared to how well it should have performed
 if it had Perfect scalability\cite{jogalekar2000evaluating}. Perfect
-Scalability is when increasing the resourced the performance is increased
+Scalability is when increasing the resources the performance is increased
 just as much. 
 \begin{table}[h!]
 \rowcolors{1}{gray!40}{}
@@ -392,11 +392,14 @@ performance.}
 We have measured the complexity of both our parallel and non parallel
 application, and presents the results below. One of the measurements
 we do is McCabe Complexity\cite{mccabe1976complexity} or better know as
- Cyclomatic complexity. It tries to measure the complexity of the 
+Cyclomatic complexity. It tries to measure the complexity of the 
 application by measuring the number of independent paths through the
 code that could be taken in a program. A program with a lot of different
 possible paths is likely to be more complex than one with very few. The
-metric is however not perfect %TODO: why is it not perfect?
+metric is however not perfect since it don't reflect anything else, e.g.  a
+program written on one row with cryptic variable names may have the same
+Cyclomatic complexity as a program structured in a more human readable way
+over several lines with descriptive variable names.
 
 \begin{table}[h!]
 \rowcolors{1}{gray!40}{}
@@ -433,7 +436,13 @@ of the different applications.
 {\small\input{code/bruteforce_noparallel.tex}}
 
 \subsubsection{Time}
-\begin{table}[!h]
+Below we present how much time was spent on developing the different
+application in a 5 minutes resolution. "Time to develop" was the time spent on
+the initial application that hashed 3.6 million words from a word list. "Time
+to extend" is the time it took to extend the application to also test every
+word with a digit at the end.
+
+\begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
   \rowcolor[gray]{0.5}
@@ -491,8 +500,30 @@ following articles:
 
 (See list of references)
 
+\section{Literature Review Findings}
+
+\subsection{Summary of findings}
+
+None of the findings are, as we see it, contradictive to one another, i.e. we
+have found no opposing results.  This indicates that there is somewhat of a
+consensus regarding as to what scalability is, what the advantages and
+disadvantages of it are, and how it is best achieved. As we see it, this is a
+good thing, since it gives us a clear picture of how to reach the goals of this
+paper, and saves us the trouble of having to match the opinions of different
+authors against one another to try to determine who's right and who's wrong.
+We feel confident that all our findings are valid and relevant to our research,
+and that we, with the help of these findings, will be able to answer our
+research questions and thus achieve our goal with this thesis.
+We also located a number of findings
+(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
+serves well as a reference in our post-mortem analysis, since they talk about
+scalability that is achieved using the same technology as we are using.
+
+\subsection{Findings}
 
 \subsection{Mapping between articles and Research Questions}
+This is a table 
+
 \begin{table}[h!]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{p{8cm} c c r}
@@ -517,27 +548,6 @@ following articles:
 \caption{RQ{n} = which research question the paper answers,
  PM-MPI = papers related to Post Mortem }
 \end{table}
-
-\section{Literature Review Findings}
-
-\subsection{Summary of findings}
-
-None of the findings are, as we see it, contradictive to one another, i.e. we
-have found no opposing results.  This indicates that there is somewhat of a
-consensus regarding as to what scalability is, what the advantages and
-disadvantages of it are, and how it is best achieved. As we see it, this is a
-good thing, since it gives us a clear picture of how to reach the goals of this
-paper, and saves us the trouble of having to match the opinions of different
-authors against one another to try to determine who's right and who's wrong.
-We feel confident that all our findings are valid and relevant to our research,
-and that we, with the help of these findings, will be able to answer our
-research questions and thus achieve our goal with this thesis.
-We also located a number of findings
-(in \cite{gropp1996high}\cite{miller2002pympi}\cite{millerparallel}) that
-serves well as a reference in our post-mortem analysis, since they talk about
-scalability that is achieved using the same technology as we are using.
-
-\subsection{Findings}
 
 \textbf{Research Question 1 and 2}
 
