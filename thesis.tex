@@ -21,19 +21,21 @@
 
 \maketitle
 
+\thispagestyle{empty}
+
 \newpage
 \noindent{\large \emph{It is not the strongest of the species that survives, nor the most 
 intelligent that survives. It is the one that is the most adaptable to change.}
 \begin{flushright}
 \emph{- -Charles Darwin (1809-1882)}
 \end{flushright}
+\thispagestyle{empty}
 
 \newpage
- 
+\setcounter{page}{1} 
 %\begin{abstract}
 %TODO
 %\end{abstract}
- 
 \section{Introduction}
 
 Distribution and scalability is becoming an important issue in todays
@@ -239,8 +241,8 @@ know in which cases it may be cost efficient.}
 \item How easy the code is to understand
 \begin{itemize}
 \item{ \textbf{Why} - Code that is easy to understand is also easy to maintain and extend. }
-\item{ \textbf{How} - Hard to objectively measure, but we will compare how much harder/easier we 
- feel it is to understand the MPI code. }
+\item{ \textbf{How} - Hard to objectively measure so were going to measure 
+the Cyclomatic Complexity \cite{mccabe1976complexity}  }
 \end{itemize}
 \item How easy it is to extend the program
 \begin{itemize}
@@ -258,10 +260,13 @@ needs to be extended further on with MPI.}
 \end{itemize}
 \item Scalability - how well do it scale when adding more resources
 \begin{itemize}
-\item{ \textbf{Why} - Optimal we would like to have an application that scales linear
- so when doubling the resources the performance also doubles. This is probably 
- not the case, but we want to know how much performance gain we get by adding
- more resources to the system. }
+\item{ \textbf{Why} - Optimal we would like to have an application that have
+perfect scalability \cite{jogalekar2000evaluating} so when doubling the
+resources the performance also doubles. This is probably not the case, but we
+want to know how much performance gain we get by adding more resources to the
+system. }
+
+
 \item{ \textbf{How} - Adding more resources to the system and then measuring performance
  again}
 \end{itemize}
@@ -281,7 +286,7 @@ don't have a high usage yet and maybe never will.}
 \subsection{Pre study}
 When we started by look at the different MPI bindings provided for python, the
 results were overwhelming and we found several different bindings providing the
-same functionality. After some research we chose to use boost-mpi python
+same functionality. After some research we chose to use boost-mpi's python
 bindings \cite{boost-mpi}. These bindings looked well maintained, had a proper
 debian package, and had example code that worked out of the box, as opposed to
 the other bindings we tested. The only problem was that it existed more than
