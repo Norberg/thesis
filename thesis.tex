@@ -584,6 +584,7 @@ offers a good balance of these attributes.
 \\
 
 \noindent\textbf{Research Question 1 and 3}
+
 {\scriptsize \emph{Research Question 1: How do one successfully develop a
 scalable distributed system? Which factors needs to be considered, and how does
 one achieve these? Without knowing what needs to be done, developing a
@@ -628,6 +629,7 @@ parallelized, and thus cannot be made faster by using parallelization.
 \\
 
 \noindent\textbf{Research Question 1.1}
+
 {\scriptsize \emph{Research Question 1.1: Which technologies, libraries and
 software can one use to achieve high-grade scalability? Not all technologies
 etc. support a high level of scalability, and knowing the difference between
@@ -658,6 +660,7 @@ parallel application with it.
 \\
 
 \noindent\textbf{Research Question 3}
+
 {\scriptsize \emph{Research Question 3: Which kind of systems can benefit from
 having a high-grade scalability? It is important to know if a certain system
 actually benefits from being highly scalable, and if so, how much. If the
@@ -736,6 +739,40 @@ become\cite{amdahl1967validity}, and so we feel that it is important to have a
 clear understanding, from the start, of how much effort should be put into
 making the system scalable.
 
+\section{Conclusion}
+
+Based on our findings, we believe that there are a couple of points necessary to
+consider when considering scalable development.
+
+\begin{itemize}
+\item{\textbf{Will the system benefit from this?} If it does not, scalability
+might not be worth the extra effort and cost. It is important to try to
+calculate how high the system load will be, and how much it needs to be able to
+handle in extreme cases. Sometimes, if the extreme cases doesn't differ too
+much from the ordinary, it can be enough by just adding faster hardware, which
+tends to be cheaper than the extra development scalability requires. However,
+it is important to be meticulous when making this decision, since modifying a
+non-scalable system into becoming scalable can require a lot of work, which can
+become costly.}
+
+\item{\textbf{How do one best make a system scalable?} We have presented one
+technology which is viable to use (MPI), but there are many more, and there is
+no one, general solution that works for all systems. Therefore it is important
+to investigate which solution and technology that works best for a specific
+system.}
+
+\item{\textbf{How scalable should the system be, and how much time should be assigned
+to the development of it?} This varies, once again, a lot from system to system.
+If one anticipates a large system load, putting more effort into scalability
+should be a priority, especially if the load fluctuates from high to low on a
+regular basis. However, if the system load increases in a more linear way, it
+might not be necessary to put as much effort into scalability. It is also
+important to remember that a system cannot effectively scale beyond a certain
+point, which can easily make investing a large amount of time and resources
+into scalable development a waste.} 
+
+\end{itemize}
+
 \bibliographystyle{unsrt}
 \bibliography{reference}
 
@@ -755,7 +792,7 @@ The ones we selected are mentioned here:
 \emph{A system design is scalable if it can be economically deployed at a range
 of scales, in both small and large con- figurations. Little attention has been
 paid to measuring and comparing the scalability of different designs of
-software for distributed operation. Recently a new measure of scal- ability
+software for distributed operation. Recently a new measure of scalability
 (called here P-scalability since it based on the “power” metric) has been
 defined specifically for distributed systems. This paper generalizes the
 metric, defines a scaling path embodying a strategy modifying the system as it
