@@ -25,7 +25,7 @@
 
 \newpage
 \noindent{\large \emph{It is not the strongest of the species that survives, nor the most 
-intelligent that survives. It is the one that is the most adaptable to change.}
+intelligent that survives. It is the one that is the most adaptable to change.}}
 \begin{flushright}
 \emph{- -Charles Darwin (1809-1882)}
 \end{flushright}
@@ -33,9 +33,19 @@ intelligent that survives. It is the one that is the most adaptable to change.}
 
 \newpage
 \setcounter{page}{1} 
-%\begin{abstract}
-%TODO
-%\end{abstract}
+\begin{abstract}
+As the amount of simultaneous users of distributed systems increase,
+scalability is becoming an important factor to consider during software
+development. Without sufficient scalability, systems might have a hard time to
+manage high loads, and might not be able to support a high amount of users. We
+have determined how scalability can best be implemented, and what extra costs
+this leads to. Our research is based on both a literature review, where we have
+looked at what others in the field of computer engineering thinks about
+scalability, and by implementing a highly scalable system of our own.  In the
+end we came up with a couple of general pointers which can help developers to
+determine if they should focus on scalable development, and what they should
+consider if they choose to do so.
+\end{abstract}
 \section{Introduction}
 
 Distribution and scalability is becoming an important issue in todays
@@ -86,7 +96,9 @@ literature review.
 In the "Analysis and Discussion" section we discuss our findings, both from the
 literature review and from the post mortem analysis.
 
-In the "Conclusion" section we present the conclusions of our research. 
+In the "Conclusion" section we present the conclusions of our research.
+
+Our selected papers can be found in appendix A. 
 
 \subsection{Background}
 
@@ -441,6 +453,7 @@ of the different applications.
 {\small\input{code/common.tex}}
 \paragraph{Parallel version of the application}
 {\small\input{code/bruteforce.tex}}
+\newpage
 \paragraph{Non Parallel version of the application}
 {\small\input{code/bruteforce_noparallel.tex}}
 
@@ -837,8 +850,9 @@ might not be necessary to put as much effort into scalability. It is also
 important to remember that a system cannot effectively scale beyond a certain
 point, which can easily make investing a large amount of time and resources
 into scalable development a waste.} 
-
 \end{itemize}
+
+\newpage
 
 \bibliographystyle{unsrt}
 \bibliography{reference}
