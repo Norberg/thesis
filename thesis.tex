@@ -8,6 +8,7 @@
 \usepackage{multirow}
 \usepackage[utf8x]{inputenc}
 \usepackage{fancyvrb}
+\usepackage{float}
 %\usepackage{llncsdoc}
 
 \begin{document}
@@ -535,14 +536,12 @@ We also located a number of findings
 serves well as a reference in our post-mortem analysis, since they talk about
 scalability that is achieved using the same technology as we are using.
 
-\subsection{Findings}
-
 \subsection{Mapping between articles and Research Questions}
 This is a table which maps the articles we've found with the Research
 Question(s) (RQ) they answer.  For example, the article "Evaluating the
 scalability of distributed systems" answers Research Question 3.  
 
-\begin{table}[h!]
+\begin{table}[H]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{p{8cm} c c r}
   \rowcolor[gray]{0.5}
@@ -564,6 +563,8 @@ scalability of distributed systems" answers Research Question 3.
 \caption{RQ{n} = which research question the paper answers,
  PM-MPI = papers related to Post Mortem }
 \end{table}
+
+\subsection{Findings}
 
 \textbf{Research Question 1 and 2}
 
