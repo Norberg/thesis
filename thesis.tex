@@ -141,7 +141,7 @@ an well tested and de facto\cite{wu2008using} standard for writing scalable
 software in any language and on any platform. MPI makes it easy to delegate
 work in an scalable and distributed environment and at the same time collect
 the results form different nodes. MPI also allows an arbitrary number of nodes
-in the system with make it easy to add more resources when performance needs to
+in the system which make it easy to add more resources when performance needs to
 be improved. \cite{gropp1996high}
 \newline
 MPI works by distributing part of the computations to different instances that
@@ -302,7 +302,7 @@ results were overwhelming and we found several different bindings providing the
 same functionality. After some research we chose to use boost-mpi's python
 bindings \cite{boost-mpi}. These bindings looked well maintained, had a proper
 debian package, and had example code that worked out of the box, as opposed to
-the other bindings we tested. The only problem was that it existed more than
+the other bindings we tested. The problem was that it existed more than
 one library with the exact same name but was used differently and it was hard
 to know what library different examples was supposed to work with. 
 
@@ -345,7 +345,7 @@ new instance of MPI stared, compared to how well it should have performed
 if it had Perfect scalability\cite{jogalekar2000evaluating}. Perfect
 Scalability is when you increase the resources, the performance is increased
 just as much. 
-\begin{table}[h!]
+\begin{table}[H]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
@@ -364,7 +364,7 @@ just as much.
 \end{tabular}
 \rowcolors{1}{gray!0}{}
 \end{table}
-\begin{figure}[h!]
+\begin{figure}[H]
 \center
 
 \includegraphics[width=\textwidth]{img/scalabilty-pympi.png}
@@ -381,7 +381,7 @@ of the application by just adding more resources when needed.
 This table and diagrams compare our scalable application towards the non
 scalable application we wrote for comparison.
 
-\begin{table}[h!]
+\begin{table}[H]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{c c c}
   \rowcolor[gray]{0.5}
@@ -400,7 +400,7 @@ scalable application we wrote for comparison.
 \end{tabular}
 \rowcolors{1}{gray!0}{}
 \end{table}
-\begin{figure}[h!]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{img/parallel-vs-non-parallel.png}
 \center
 \caption{From this we can see that we have a small performance loss (5\%) due the usage
@@ -423,7 +423,7 @@ program written on one row with cryptic variable names may have the same
 Cyclomatic complexity as a program structured in a more human readable way
 over several lines with descriptive variable names.
 
-\begin{table}[h!]
+\begin{table}[H]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
   \rowcolor[gray]{0.5}
@@ -449,12 +449,11 @@ therefore saw it as a little bit more difficult.
 
 Below we show how the code looks to allow the reader to compare the readability
 of the different applications. 
-
 \paragraph{Common part of the application}
 {\small\input{code/common.tex}}
+\pagebreak
 \paragraph{Parallel version of the application}
 {\small\input{code/bruteforce.tex}}
-\newpage
 \paragraph{Non Parallel version of the application}
 {\small\input{code/bruteforce_noparallel.tex}}
 
@@ -465,7 +464,7 @@ the initial application that hashed 3.6 million words from a word list. "Time
 to extend" is the time it took to extend the application to also test every
 word with a digit at the end.
 
-\begin{table}[h!]
+\begin{table}[H]
 \rowcolors{1}{gray!40}{}
 \begin{tabular}{l c c}
   \rowcolor[gray]{0.5}
