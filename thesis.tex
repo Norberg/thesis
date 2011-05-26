@@ -220,13 +220,13 @@ bruteforce (testing all possible combinations of letters and numbers to match a
 password) and find out what password was used to generate the hash.  Since a
 hash is a one-way algorithm (or at least should be), we have to test every
 possible password and check if the hash matches the hashed user password, and
-if it matches we have probably\footnote{We could possible have found a
+if it matches we have probably\footnote{We could possibly have found a
 collision in the algorithm, but the chance is minimal in a well tested
-algorithm like sha256 and in a relative small password range we're testing,
+algorithm like sha256 and in the relative small password range we're testing,
 only $\sim$ 40 million } found the same password as the user had.
 
 In the application without MPI we're going to do it by iterating over all words
-in a dictionary, hashing them one by one, attempting to match it to the hash
+in a dictionary, hashing them one by one, while attempting to match it to the hash
 we are trying to bruteforce.
 
 With MPI we will create several instances of MPI that each iterates over a part
@@ -719,24 +719,24 @@ the ones who do and the ones who do not can save a lot of expenses.}}
 
 Gropp, Lusk, Doss and Skjellum\cite{gropp1996high} discusses the design choices made when
 designing the MPI standard and their popular implementation MPICH. They
-compare the cross platform standard that MPI is towards vendor specific
-predecessor, and the performance penalty's the cross platform approach resulted
-in. But also why it was a good tradeoff since applications don't needs to be
+compare the cross platform standard that MPI is against a vendor specific
+predecessor, and the performance penalties the cross platform approach resulted
+in. But also why it was a good tradeoff since applications don't need to be
 rewritten when switching between computer systems. While the api towards
-the user of MPI is the same everywhere MPICH still provides the ability to
+the user of MPI is the same everywhere, MPICH still provides the ability to
 have platform specific code in MPI to speed up the execution time on different
 platforms. Already in 1996 when this article was written several vendors
 had contributed code to get MPICH to run faster on their hardware.
 \\
 
-Miller \cite{millerparallel}\cite{miller2002pympi} gives a hand on approach on
-how to write scalable application with python and MPI, he also argues that
+Miller \cite{millerparallel}\cite{miller2002pympi} gives a hands on approach on
+how to write scalable application with python and MPI, and he also argues that
 even if a program written in C may run faster, the counterpart in python will
-be much easier to write and maintain, and therefore in many case would be
-preferred. The performance in the python case could also be increased by
-writing computing heavy parts in C, or the python code could be used as a 
+be much easier to write and maintain, and therefore would be preferred in many
+cases. The performance in the python case could also be increased by
+writing heavy computing parts in C, or the python code could be used as a 
 prototype for the real application. Miller gives detailed yet easy to 
-understand explanation of the principle behind MPI and how to write a
+understand explanation of the principle behind MPI, as well as how to write a
 parallel application with it.
 \\
 
