@@ -1,0 +1,115 @@
+%
+% *****************************************************************************
+%             File : template.tex
+%        Author(s) : Charlie Svahnberg, modified by Team Telia Smart Home
+% 
+% © 2010 by Charlie Svahnberg, Blekinge Institute of Technology.
+% All Rights Reserved
+% *****************************************************************************
+%
+
+\documentclass[t]{beamer} 
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[swedish, english]{babel}
+\usepackage{color}
+\usepackage{graphicx}
+%\usepackage{verbatim}
+%\usepackage{moreverb}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{ulem}
+\usepackage{tabularx}
+\usepackage{ctable}
+
+\hypersetup{
+ pdftitle={},
+ pdfauthor={pdflatex},
+ pdfsubject={},
+ pdfkeywords={$Id: BTH thesis presentation}, %$
+ pdfpagemode={UseNone},
+ pdfstartview={FitH},
+ pdftoolbar=true
+}
+
+\title{Presentation}
+\author[Filip Andersson \& Simon Norberg]{Scalable applications in a distributed enviroment}
+\date[\number\year]{\today}
+\institute{Blekinge Institute of Technology}
+
+\input{modes.style}
+
+\begin{document}
+\selectlanguage{english}
+
+\begin{frame}
+ \titlepage
+\end{frame}
+
+\begin{frame} 
+ \frametitle{Agenda}
+ \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+ \transdissolve
+ \frametitle{Introduction}
+ \begin{itemize}
+  \item Scalability, an important part of software development
+  \item Makes a system adaptable
+  \item Increases system load capacity
+ \end{itemize}
+
+\end{frame}
+\begin{frame}
+ \transdissolve
+ \frametitle{Goals}
+ \begin{itemize}
+  \item What needs to be considered when developing a scalable system?
+  \item What is the extra cost of these features, if any?
+  \item Which types of systems can benefit from being scalable?
+ \end{itemize}
+\end{frame}
+
+\section{Post mortem analysis}
+\begin{frame}
+ \transdissolve
+ \frametitle{MPI}
+ \begin{itemize}
+  \item Principle - splitting the workload between several computers and/or cores
+  \item Problem - password cracker
+  \item boost-mpi-python
+  \item 104 sec to check $\sim$40 million password on a single core
+  \item 28 sec to check $\sim$40 million password on 2 computers with a total of 4 cores
+  \item Equal programming effort, better performance on more than 1 core 
+ \end{itemize}
+\end{frame}
+
+\section{Literature Review}
+\begin{frame}
+ \transdissolve
+ \frametitle{Papers}
+ \begin{itemize}
+ \item 1000 papers read
+ \item 10 papers selected
+ \item Parallel systems
+ \item Modularity
+ \item Cost depends on extent of scalability
+ \end{itemize}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+ \transdissolve
+ \frametitle{Conclusion}
+ \begin{itemize}
+ \item Will the system benefit from scalability?
+ \item How do one best make a system scalable?
+ \item How scalable should the system be, and how much time should be assigned
+to the development of it?
+ \end{itemize}
+\end{frame}
+\end{document}

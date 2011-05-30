@@ -1,0 +1,49 @@
+% *****************************************************************************
+%             File : modes.style
+%        Author(s) : Charlie Svahnberg, modified by Team Telia Smart Home
+% © 2007 by Charlie Svahnberg, Blekinge institute of Technology.
+% All Rights Reserved
+% *****************************************************************************
+
+\mode<presentation>
+{
+  \useinnertheme[shadow=true]{rounded}
+  \useoutertheme{shadow}
+  %\usecolortheme{orchid}
+  \usecolortheme{whale}
+
+% CHANGED
+  \usecolortheme[RGB={7,5,102}]{structure}
+  \definecolor{TeliaPink}{RGB}{5,3,76}
+  \setbeamercolor*{palette quaternary}{use=structure,fg=white,bg=TeliaPink}
+% END CHANGED
+
+%Uncomment for printer friendly colours
+%  \usecolortheme{dove}
+
+  \setbeamerfont{block title}{size={}}
+
+  \setbeamercovered{invisible}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{footline}
+  {
+    \leavevmode
+    \hbox
+    {
+      \begin{beamercolorbox}[wd=.50\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}
+        \usebeamerfont{author in head/foot}\copyright~\insertshortdate{},~\insertshortauthor
+      \end{beamercolorbox}\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}
+        \usebeamerfont{title in head/foot}\insertshorttitle
+      \end{beamercolorbox}\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+        \usebeamerfont{date in head/foot}
+        \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+      \end{beamercolorbox}
+    }
+    \vskip0pt
+  }
+}
+
+\mode<article>
+{
+  \usepackage{fullpage}
+}
